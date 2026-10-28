@@ -1,1 +1,8 @@
-.idea/workspace.xml
+**/node_modules/
+**/dist/
+**/target/
+.env
+.idea/
+.vscode/
+*.log
+.DS_Store
