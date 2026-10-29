@@ -117,3 +117,4 @@ npm.cmd --prefix .\G5_FE2 run build
 ```
 
 Backend tests dùng H2 ở chế độ PostgreSQL, chạy các migration thật, kiểm tra đăng ký tư vấn, validation, CSRF, phân quyền và luồng tuyển dụng. Website `G5_FE2` build đầy đủ các trang HTML.
+// tesst ne
