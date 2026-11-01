@@ -1,0 +1,303 @@
+/* ==========================================================================
+   Base
+   ========================================================================== */
+.dashboard-page {
+  --dash-green: #155e49;
+  --dash-ink: #29443b;
+  --dash-muted: #87968f;
+  --dash-line: #e4ebe7;
+  color: var(--dash-ink);
+  font-size: 12px;
+  min-width: 0;
+}
+
+.dashboard-page h1,
+.dashboard-page h2,
+.dashboard-page p {
+  margin-top: 0;
+}
+
+.dashboard-page button {
+  font-family: inherit;
+}
+
+/* ==========================================================================
+   SummaryBanner
+   ========================================================================== */
+.dash-banner {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 28px;
+  background: linear-gradient(112deg, #195640 0%, #206148 65%, #2d7053 100%);
+  padding: 23px 25px;
+  border-radius: 10px;
+  color: #fff;
+  margin-bottom: 20px;
+  min-height: 128px;
+}
+
+.dash-banner-message > span {
+  display: block;
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  color: #c0d8ca;
+  margin-bottom: 9px;
+}
+
+.dash-banner h2 {
+  font-weight: 450;
+  font-size: 22px;
+  line-height: 1.25;
+  letter-spacing: 0;
+  margin-bottom: 8px;
+}
+
+.dash-banner-message > p {
+  font-size: 10px;
+  color: #b9d0c3;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.dash-highlights {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: center;
+  gap: 20px;
+  border-left: 1px solid #ffffff24;
+  padding-left: 23px;
+}
+
+.dash-highlights > div > span {
+  display: block;
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: #c6dace;
+  line-height: 1.5;
+  margin-bottom: 11px;
+}
+
+.dash-highlights strong {
+  display: block;
+  font-size: 24px;
+  font-weight: 450;
+  line-height: 1.2;
+  margin-bottom: 10px;
+  overflow-wrap: anywhere;
+}
+
+.dash-highlights strong small {
+  font-size: 19px;
+  font-weight: 400;
+}
+
+.dash-highlights p {
+  color: #b9d0c3;
+  font-size: 9px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   focusPanel (panel có thể được focus / scroll tới)
+   ========================================================================== */
+.dash-panel {
+  background: #fff;
+  border: 1px solid var(--dash-line);
+  border-radius: 11px;
+  min-width: 0;
+  overflow: hidden;
+  scroll-margin-top: 24px;
+  outline: none;
+}
+
+.dash-panel:focus-visible {
+  outline: 2px solid #83b8a2;
+  outline-offset: 4px;
+}
+
+.dash-panel-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 17px 19px 14px;
+}
+
+.dash-panel-heading h2 {
+  color: var(--dash-ink);
+  font-size: 14px;
+  font-weight: 650;
+  letter-spacing: 0;
+  margin: 0 0 6px;
+  line-height: 1.35;
+}
+
+.dash-panel-heading p {
+  font-size: 10px;
+  color: var(--dash-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.dash-panel-count {
+  flex-shrink: 0;
+  color: #51806a;
+  background: #f0f6f2;
+  border-radius: 4px;
+  font-size: 9px;
+  padding: 4px 7px;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   RecordCards
+   ========================================================================== */
+.dash-record-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding: 0 19px 18px;
+}
+
+.dash-record-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 8px;
+  min-width: 0;
+  background: #fafcfb;
+  border: 1px solid var(--dash-line);
+  border-radius: 8px;
+  padding: 14px;
+  color: var(--dash-ink);
+  font-weight: 400;
+  overflow-wrap: anywhere;
+}
+
+.dash-record-card:hover {
+  background: #f0f7f2;
+  border-color: #bad5c6;
+}
+
+.dash-record-card-code {
+  font-size: 9px;
+  color: #2f7158;
+  font-weight: 600;
+}
+
+.dash-record-card > strong {
+  font-size: 11px;
+  line-height: 1.45;
+  font-weight: 600;
+}
+
+.dash-record-card > span:not(.dash-badge):not(.dash-record-card-code):not(.dash-card-view) {
+  font-size: 9px;
+  color: var(--dash-muted);
+  line-height: 1.5;
+}
+
+.dash-card-view {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #256d52;
+  font-size: 9px;
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+/* Badge + tone (dùng trong record card) */
+.dash-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 7px;
+  border-radius: 4px;
+  font-size: 8px;
+  line-height: 1.35;
+  max-width: 155px;
+}
+
+.dash-badge i {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+.dash-tone-green   { background: #eaf3ee; color: #378069; }
+.dash-tone-amber   { background: #fff4df; color: #b47c17; }
+.dash-tone-red     { background: #fff0e9; color: #ce6a4b; }
+.dash-tone-neutral { background: #f0f3f2; color: #84938c; }
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (min-width: 1550px) {
+  .dash-banner        { padding: 27px 30px; }
+  .dash-panel-heading { padding: 21px 22px 16px; }
+}
+
+@media (max-width: 1200px) {
+  .dash-banner {
+    grid-template-columns: 1fr 1fr;
+    padding: 21px;
+    gap: 20px;
+  }
+  .dash-banner h2 { font-size: 20px; }
+  .dash-highlights {
+    gap: 12px;
+    padding-left: 18px;
+  }
+  .dash-highlights strong { font-size: 21px; }
+  .dash-panel-heading {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .dash-record-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 950px) {
+  .dash-banner {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .dash-highlights {
+    border-left: 0;
+    border-top: 1px solid #ffffff24;
+    padding-left: 0;
+    padding-top: 17px;
+  }
+  .dash-highlights strong { margin-bottom: 5px; }
+  .dash-highlights > div > span { margin-bottom: 7px; }
+}
+
+@media (max-width: 620px) {
+  .dash-banner { padding: 20px; }
+  .dash-banner h2 { font-size: 22px; }
+  .dash-highlights { gap: 10px; }
+  .dash-highlights strong { font-size: 22px; }
+  .dash-highlights strong small { font-size: 16px; }
+  .dash-highlights p { font-size: 8px; }
+  .dash-panel-heading { padding: 16px; }
+  .dash-record-cards {
+    padding: 0 16px 16px;
+    gap: 10px;
+  }
+  .dash-record-card { padding: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-page * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
