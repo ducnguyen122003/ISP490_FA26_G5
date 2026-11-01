@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Base
+   Base (biến màu dùng chung)
    ========================================================================== */
 .dashboard-page {
   --dash-green: #155e49;
@@ -15,10 +15,6 @@
 .dashboard-page h2,
 .dashboard-page p {
   margin-top: 0;
-}
-
-.dashboard-page button {
-  font-family: inherit;
 }
 
 /* ==========================================================================
@@ -101,7 +97,7 @@
 }
 
 /* ==========================================================================
-   focusPanel (panel có thể được focus / scroll tới)
+   focusPanel
    ========================================================================== */
 .dash-panel {
   background: #fff;
@@ -153,90 +149,6 @@
 }
 
 /* ==========================================================================
-   RecordCards
-   ========================================================================== */
-.dash-record-cards {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  padding: 0 19px 18px;
-}
-
-.dash-record-card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 8px;
-  min-width: 0;
-  background: #fafcfb;
-  border: 1px solid var(--dash-line);
-  border-radius: 8px;
-  padding: 14px;
-  color: var(--dash-ink);
-  font-weight: 400;
-  overflow-wrap: anywhere;
-}
-
-.dash-record-card:hover {
-  background: #f0f7f2;
-  border-color: #bad5c6;
-}
-
-.dash-record-card-code {
-  font-size: 9px;
-  color: #2f7158;
-  font-weight: 600;
-}
-
-.dash-record-card > strong {
-  font-size: 11px;
-  line-height: 1.45;
-  font-weight: 600;
-}
-
-.dash-record-card > span:not(.dash-badge):not(.dash-record-card-code):not(.dash-card-view) {
-  font-size: 9px;
-  color: var(--dash-muted);
-  line-height: 1.5;
-}
-
-.dash-card-view {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  color: #256d52;
-  font-size: 9px;
-  margin-top: auto;
-  padding-top: 8px;
-}
-
-/* Badge + tone (dùng trong record card) */
-.dash-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 4px 7px;
-  border-radius: 4px;
-  font-size: 8px;
-  line-height: 1.35;
-  max-width: 155px;
-}
-
-.dash-badge i {
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background: currentColor;
-  flex-shrink: 0;
-}
-
-.dash-tone-green   { background: #eaf3ee; color: #378069; }
-.dash-tone-amber   { background: #fff4df; color: #b47c17; }
-.dash-tone-red     { background: #fff0e9; color: #ce6a4b; }
-.dash-tone-neutral { background: #f0f3f2; color: #84938c; }
-
-/* ==========================================================================
    Responsive
    ========================================================================== */
 @media (min-width: 1550px) {
@@ -259,9 +171,6 @@
   .dash-panel-heading {
     padding-left: 16px;
     padding-right: 16px;
-  }
-  .dash-record-cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -288,16 +197,4 @@
   .dash-highlights strong small { font-size: 16px; }
   .dash-highlights p { font-size: 8px; }
   .dash-panel-heading { padding: 16px; }
-  .dash-record-cards {
-    padding: 0 16px 16px;
-    gap: 10px;
-  }
-  .dash-record-card { padding: 12px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .dashboard-page * {
-    scroll-behavior: auto !important;
-    transition: none !important;
-  }
 }
