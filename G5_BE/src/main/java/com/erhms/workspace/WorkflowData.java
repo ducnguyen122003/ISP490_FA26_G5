@@ -68,6 +68,7 @@ public class WorkflowData {
     }
     public static void role(User user,String...allowed){if(!Arrays.asList(allowed).contains(user.getRoleCode()))throw new AccessDeniedException("Bạn chỉ được xem, không có quyền thực hiện thao tác này");}
     public static String courseScope(User u,String alias){return switch(u.getRoleCode()){
+        case "ADMIN"->"1=1";
         case "MANAGER"->alias+".manager_id="+u.id;
         case "LECTURER"->"EXISTS(SELECT 1 FROM training_classes scope_cl WHERE scope_cl.course_id="+alias+".id AND scope_cl.lecturer_id="+u.id+")";
         case "HR"->alias+".status IN ('OPEN','ACTIVE')";
@@ -78,27 +79,27 @@ public class WorkflowData {
         case "STUDENT"->"EXISTS(SELECT 1 FROM training_enrollments scope_e WHERE scope_e.class_id="+alias+".id AND scope_e.student_id="+u.id+")";
         default->"1=0";};}
     public static String contractScope(User u,String alias){return switch(u.getRoleCode()){
-        case "HR"->"("+alias+".created_by="+u.id+" OR ("+alias+".created_by IS NULL AND EXISTS(SELECT 1 FROM consultation_followups scope_f WHERE scope_f.consultation_id="+alias+".consultation_id AND scope_f.assigned_to="+u.id+")))";
+        case "HR"->alias+".handed_over_at IS NOT NULL AND EXISTS(SELECT 1 FROM consultation_followups scope_f WHERE scope_f.consultation_id="+alias+".consultation_id AND scope_f.assigned_to="+u.id+")";
         case "ACCOUNTANT"->"("+alias+".accountant_id="+u.id+" OR "+alias+".accountant_id IS NULL) AND "+alias+".handed_over_at IS NOT NULL";
-        case "MANAGER"->alias+".manager_id="+u.id+" AND "+alias+".handed_over_at IS NOT NULL";
+        case "MANAGER"->alias+".manager_id="+u.id;
         case "STUDENT"->alias+".student_id="+u.id;
         default->"1=0";};}
     public String base(String resource,User u){
         long uid=u.id;
         return switch(resource){
-            case "admissions"->"SELECT r.*,COALESCE(f.status,'NEW') AS status,f.assigned_to,COALESCE(f.version,0) AS version,f.channel,f.notes,f.appointment_at FROM consultation_registrations r LEFT JOIN consultation_followups f ON f.consultation_id=r.id WHERE (f.assigned_to IS NULL OR f.assigned_to="+uid+")";
+            case "admissions"->"SELECT r.*,COALESCE(f.status,'NEW') AS status,"+AdmissionProfiles.DOCUMENT_STATUS_SQL+" AS document_status,f.assigned_to,COALESCE(f.version,0) AS version,f.channel,f.notes,f.appointment_at,f.document_due_on,f.discontinuation_reason,f.scan_file_id,f.profile_submitted_at,f.forwarded_at,f.forwarded_by,(SELECT forward_actor.full_name FROM m_user forward_actor WHERE forward_actor.user_id=f.forwarded_by) AS forwarded_by_name,f.profile_created_at,f.profile_student_id,CASE WHEN w.id IS NOT NULL THEN CONCAT('file:',w.id,':',w.filename) END AS profile_evidence FROM consultation_registrations r LEFT JOIN consultation_followups f ON f.consultation_id=r.id LEFT JOIN workflow_files w ON w.id=f.scan_file_id WHERE r.intake_source='ADMISSION' AND (f.assigned_to IS NULL OR f.assigned_to="+uid+")";
             case "students"->"SELECT u.user_id AS id,u.full_name AS name,u.full_name,u.email,u.phone,p.date_of_birth,p.identity_number,p.address,p.emergency_name,p.emergency_phone,COALESCE(p.version,0) AS version,COALESCE((SELECT en.status FROM training_enrollments en JOIN training_classes sc ON sc.id=en.class_id WHERE en.student_id=u.user_id AND "+classScope(u,"sc")+" ORDER BY en.created_at DESC FETCH FIRST 1 ROW ONLY),'PENDING') AS status FROM m_user u LEFT JOIN student_profiles p ON p.user_id=u.user_id WHERE u.role_id=3 AND "+(u.getRoleCode().equals("STUDENT")?"u.user_id="+uid:"(p.manager_id="+uid+" OR EXISTS(SELECT 1 FROM training_contracts scope_c WHERE scope_c.student_id=u.user_id AND scope_c.manager_id="+uid+" AND scope_c.handed_over_at IS NOT NULL) OR EXISTS(SELECT 1 FROM training_enrollments scope_e JOIN training_classes scope_cl ON scope_cl.id=scope_e.class_id WHERE scope_e.student_id=u.user_id AND "+classScope(u,"scope_cl")+"))");
-            case "courses"->"SELECT c.*,(SELECT p.name FROM m_profession p WHERE p.id=c.profession_id) AS profession_label FROM training_courses c WHERE "+courseScope(u,"c");
+            case "courses"->"SELECT c.*,(SELECT p.name FROM m_profession p WHERE p.id=c.profession_id) AS profession_label,(SELECT m.full_name FROM m_user m WHERE m.user_id=c.manager_id) AS manager_name FROM training_courses c WHERE "+courseScope(u,"c");
             case "classes"->"SELECT cl.*,co.name AS course_name,co.code AS course_code,lect.full_name AS lecturer_name,(SELECT COUNT(*) FROM training_enrollments e WHERE e.class_id=cl.id AND e.status IN ('ACTIVE','PENDING')) AS student_count FROM training_classes cl LEFT JOIN training_courses co ON co.id=cl.course_id LEFT JOIN m_user lect ON lect.user_id=cl.lecturer_id WHERE "+classScope(u,"cl");
             case "assignments","closures"->"SELECT e.*,u.full_name AS student_name,cl.code AS class_code,cl.name AS class_name,co.name AS course_name,ct.code AS contract_code,"+(resource.equals("assignments")?"e.assignment_status":"COALESCE(e.closure_outcome,e.status)")+" AS state FROM training_enrollments e JOIN training_classes cl ON cl.id=e.class_id JOIN m_user u ON u.user_id=e.student_id LEFT JOIN training_courses co ON co.id=cl.course_id LEFT JOIN training_contracts ct ON ct.id=e.contract_id WHERE "+(List.of("ACCOUNTANT","IT_SUPPORT").contains(u.getRoleCode())?"ct.handed_over_at IS NOT NULL"+(u.getRoleCode().equals("ACCOUNTANT")?" AND "+contractScope(u,"ct"):""):classScope(u,"cl"));
             case "sessions"->"SELECT s.*,(SELECT m.name FROM m_classroom m WHERE m.id=s.classroom_id) AS room_label,cl.code AS class_code,cl.name AS class_name,cl.lecturer_id,l.full_name AS lecturer_name FROM training_sessions s JOIN training_classes cl ON cl.id=s.class_id LEFT JOIN m_user l ON l.user_id=cl.lecturer_id WHERE "+classScope(u,"cl");
             case "grades"->"SELECT g.*,e.student_id,e.class_id,u.full_name AS student_name,cl.code AS class_code FROM training_grades g JOIN training_enrollments e ON e.id=g.enrollment_id JOIN training_classes cl ON cl.id=e.class_id JOIN m_user u ON u.user_id=e.student_id WHERE "+(u.getRoleCode().equals("STUDENT")?"e.student_id="+uid+" AND g.published_at IS NOT NULL":classScope(u,"cl"));
             case "student-attendance"->"SELECT a.*,s.title,s.starts_at,cl.code AS class_code FROM training_attendance a JOIN training_sessions s ON s.id=a.session_id JOIN training_classes cl ON cl.id=s.class_id WHERE a.student_id="+uid;
-            case "contracts","tuition","deposits"->"SELECT c.*,u.full_name AS student_name,co.name AS course_name,co.duration_months,"+
+            case "contracts","tuition","deposits"->"SELECT c.*,COALESCE(c.applicant_name,u.full_name) AS student_name,COALESCE(c.registered_course_name,co.name) AS course_name,COALESCE(c.registered_duration_months,co.duration_months) AS duration_months,(SELECT r.enrollment_course FROM consultation_registrations r WHERE r.id=c.consultation_id) AS enrollment_course,"+
                     "COALESCE((SELECT SUM(t.amount) FROM financial_transactions t WHERE t.contract_id=c.id AND t.kind='TUITION' AND t.status='CONFIRMED'),0) AS tuition_paid,"+
                     "COALESCE((SELECT SUM(t.amount) FROM financial_transactions t WHERE t.contract_id=c.id AND t.kind='DEPOSIT' AND t.status='CONFIRMED'),0) AS deposit_paid,"+
                     "COALESCE((SELECT SUM(t.amount) FROM financial_transactions t WHERE t.contract_id=c.id AND t.kind='REFUND' AND t.status='CONFIRMED'),0) AS refund_paid "+
-                    "FROM training_contracts c JOIN m_user u ON u.user_id=c.student_id LEFT JOIN training_courses co ON co.id=c.course_id WHERE "+contractScope(u,"c");
+                    "FROM training_contracts c LEFT JOIN m_user u ON u.user_id=c.student_id LEFT JOIN training_courses co ON co.id=c.course_id WHERE "+contractScope(u,"c");
             case "payments"->"SELECT t.*,(SELECT m.name FROM m_bank m WHERE m.id=t.bank_id) AS bank_name_label,c.code AS contract_code,c.student_id,c.tuition_due,c.deposit_due,c.status AS contract_status,u.full_name AS student_name FROM financial_transactions t JOIN training_contracts c ON c.id=t.contract_id JOIN m_user u ON u.user_id=c.student_id WHERE "+contractScope(u,"c");
             case "requests"->"SELECT r.*,(SELECT m.name FROM m_equipment_group m WHERE m.id=r.equipment_group_id) AS group_name_label,cl.code AS class_code,u.full_name AS lecturer_name,s.full_name AS student_name FROM equipment_requests r LEFT JOIN training_classes cl ON cl.id=r.class_id JOIN m_user u ON u.user_id=r.requested_by LEFT JOIN m_user s ON s.user_id=r.student_id WHERE "+(u.getRoleCode().equals("LECTURER")?"r.requested_by="+uid+" AND "+classScope(u,"cl"):"1=1");
             case "assets"->"SELECT a.*,(SELECT m.name FROM m_equipment_group m WHERE m.id=a.equipment_group_id) AS category_label,(SELECT m.name FROM m_storage_location m WHERE m.id=a.storage_location_id) AS location_label FROM equipment_assets a WHERE 1=1";
@@ -116,7 +117,8 @@ public class WorkflowData {
     public static long numericId(String id){try{long n=Long.parseLong(id);if(n<=0)throw new NumberFormatException();return n;}catch(Exception e){throw invalid("id","Mã tài khoản không hợp lệ");}}
     public List<Map<String,Object>> page(String resource,User u,String q,String status,int page){
         String sql=filtered(resource,u,q,status);List<Object> args=filters(q,status);args.add(25);args.add(page*25);
-        return rows(sql+" ORDER BY id LIMIT ? OFFSET ?",args.toArray());
+        String order=resource.equals("admissions")?"created_date DESC, id":"id";
+        return rows(sql+" ORDER BY "+order+" LIMIT ? OFFSET ?",args.toArray());
     }
     public long total(String resource,User u,String q,String status){return count("SELECT COUNT(*) FROM ("+filtered(resource,u,q,status)+") results",filters(q,status).toArray());}
     public List<Map<String,Object>> statistics(String resource,User user,String q,String status){
@@ -124,15 +126,16 @@ public class WorkflowData {
         var groups=rows("SELECT "+state+" AS metric_state,COUNT(*) AS count FROM ("+filtered(resource,user,q,status)+") metrics GROUP BY "+state,filters(q,status).toArray());
         long total=0,pending=0,active=0,closed=0;
         for(var group:groups){long n=((Number)group.get("count")).longValue();String code=Objects.toString(group.get("metricState"),"");total+=n;
-            if(Set.of("NEW","PENDING","PLANNED","PREPARING","READY","MISMATCH","RETURN_DUE","UNREAD","IN_PROGRESS","APPOINTMENT").contains(code))pending+=n;
+            if(Set.of("NEW","DRAFT","SENT_FOR_SIGNATURE","SIGNATURE_REVIEW","PENDING","PLANNED","PREPARING","READY","MISMATCH","RETURN_DUE","UNREAD","IN_PROGRESS","APPOINTMENT").contains(code))pending+=n;
             else if(Set.of("COMPLETED","WITHDRAWN","RETURNED","RESOLVED","RETIRED","CLOSED","REJECTED","CANCELLED").contains(code))closed+=n;else active+=n;
         }
         return List.of(Map.of("label","Tổng bản ghi","value",total),Map.of("label","Chờ xử lý","value",pending),Map.of("label","Đang hoạt động / đã xác nhận","value",active),Map.of("label","Đã kết thúc","value",closed));
     }
     private List<Object> filters(String q,String status){var args=new ArrayList<Object>();if(!q.isEmpty())args.add("%"+q.toLowerCase(Locale.ROOT).replace("!","!!").replace("%","!%").replace("_","!_")+"%");if(!status.isEmpty())args.add(status);return args;}
     private String filtered(String resource,User u,String q,String status){
-        String searchable=switch(resource){case "admissions"->"COALESCE(full_name,'')||' '||COALESCE(phone,'')||' '||COALESCE(email,'')";case "students"->"COALESCE(full_name,'')||' '||COALESCE(email,'')";case "contracts","tuition","deposits"->"COALESCE(code,'')||' '||COALESCE(student_name,'')";case "assignments","closures","payments","loans","grades"->"COALESCE(student_name,'')||' '||COALESCE(CAST(id AS VARCHAR),'')";case "notifications","sessions","requests","student-attendance"->"COALESCE(title,'')";case "incidents"->"COALESCE(description,'')||' '||COALESCE(asset_code,'')";default->"COALESCE(name,'')||' '||COALESCE(code,'')";};
+        String searchable=switch(resource){case "admissions"->"COALESCE(full_name,'')||' '||COALESCE(phone,'')||' '||COALESCE(email,'')";case "students"->"COALESCE(full_name,'')||' '||COALESCE(email,'')";case "contracts","tuition","deposits"->"COALESCE(code,'')||' '||COALESCE(student_name,'')||' '||COALESCE(student_email,'')";case "assignments","closures","payments","loans","grades"->"COALESCE(student_name,'')||' '||COALESCE(CAST(id AS VARCHAR),'')";case "notifications","sessions","requests","student-attendance"->"COALESCE(title,'')";case "incidents"->"COALESCE(description,'')||' '||COALESCE(asset_code,'')";default->"COALESCE(name,'')||' '||COALESCE(code,'')";};
         String statusKey=List.of("closures","assignments").contains(resource)?"state":resource.equals("loans")?"return_status":resource.equals("student-attendance")?"status":resource.equals("grades")?null:"status";
+        if(resource.equals("admissions")&&Set.of("DOCUMENTS_COMPLETE","DOCUMENTS_INCOMPLETE").contains(status))statusKey="document_status";
         if(!status.isEmpty()&&statusKey==null)throw invalid("status","Bộ lọc không được hỗ trợ");
         return "SELECT scoped.* FROM ("+base(resource,u)+") scoped WHERE 1=1"+(!q.isEmpty()?" AND LOWER("+searchable+") LIKE ? ESCAPE '!'":"")+(!status.isEmpty()?" AND "+statusKey+"=?":"");
     }
