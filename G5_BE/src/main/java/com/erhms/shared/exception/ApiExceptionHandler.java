@@ -24,8 +24,14 @@ public class ApiExceptionHandler {
         return ResponseEntity.status(409).body(Map.of("message","Dữ liệu bị trùng hoặc đang được liên kết với hồ sơ khác. Hãy tải lại để kiểm tra."));
     }
     @ExceptionHandler(org.springframework.web.multipart.MaxUploadSizeExceededException.class)
-    ResponseEntity<?> uploadTooLarge(org.springframework.web.multipart.MaxUploadSizeExceededException exception) {
-        return ResponseEntity.badRequest().body(Map.of("message","Tệp minh chứng vượt kích thước cho phép.","fields",Map.of("evidence","Tệp không được vượt quá 2 MB")));
+    ResponseEntity<?> uploadTooLarge(org.springframework.web.multipart.MaxUploadSizeExceededException exception, HttpServletRequest request) {
+        if(request.getRequestURI().equals("/api/workspace/admissions/import")
+                || request.getRequestURI().equals("/api/workspace/student-accounts/import")) {
+            String message="File Excel không được vượt quá 2 MB. Hãy chia thành các file nhỏ hơn.";
+            return ResponseEntity.badRequest().body(Map.of("message",message,"code","EXCEL_VALIDATION","fields",Map.of("file",message)));
+        }
+        String message="Tệp tải lên vượt kích thước cho phép. Bản scan hợp đồng đã ký tối đa 10 MB; minh chứng khác tối đa 2 MB.";
+        return ResponseEntity.badRequest().body(Map.of("message",message,"fields",Map.of("evidence",message)));
     }
     @ExceptionHandler(com.erhms.workspace.WorkflowException.class)
     ResponseEntity<?> workflow(com.erhms.workspace.WorkflowException exception) {

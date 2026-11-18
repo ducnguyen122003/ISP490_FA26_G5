@@ -1,4 +1,8 @@
 spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 11MB
   application:
     name: ERHMS
   datasource:
@@ -34,6 +38,8 @@ spring:
 app:
   mail:
     from: ${SMTP_FROM:${spring.mail.username:}}
+  student-accounts:
+    login-url: ${STUDENT_LOGIN_URL:http://localhost:8082/login}
 server:
   port: 8080
   servlet:
