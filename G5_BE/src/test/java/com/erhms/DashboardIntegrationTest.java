@@ -301,10 +301,12 @@ class DashboardIntegrationTest {
         transaction(active, "DEPOSIT", 900_000, "PENDING");
         UUID asset = insert("equipment_assets", "code", "DAMAGED-ASSET", "name", "Damaged equipment",
                 "status", "MAINTENANCE");
+        jdbc.update("UPDATE training_contracts SET accountant_id=?,handed_over_at=CURRENT_TIMESTAMP WHERE id=?",accountant.id,active);
+        UUID loan=insert("equipment_loans","asset_id",asset,"student_id",student.id,"contract_id",active);
         insert("equipment_incidents", "asset_id", asset, "reported_by", accountant.id,
-                "description", "Unpaid damage", "status", "OPEN", "compensation_due", 30_000);
+                "description", "Unpaid damage", "status", "OPEN", "compensation_due", 30_000,"loan_id",loan);
         insert("equipment_incidents", "asset_id", asset, "reported_by", accountant.id,
-                "description", "Resolved damage", "status", "RESOLVED", "compensation_due", 40_000);
+                "description", "Resolved damage", "status", "RESOLVED", "compensation_due", 40_000,"loan_id",loan);
 
         JsonNode dashboard = dashboard(login(accountant.email), "/api/dashboard");
         assertStat(dashboard, "tuition", 600_000);
@@ -320,9 +322,9 @@ class DashboardIntegrationTest {
         UUID first = consultation("Current registration one", OffsetDateTime.now());
         UUID second = consultation("Current registration two", OffsetDateTime.now());
         UUID old = consultation("Old registration", OffsetDateTime.now().minusWeeks(1));
-        insert("consultation_followups", "consultation_id", first, "assigned_to", hr.id, "status", "CONTACTED");
-        insert("consultation_followups", "consultation_id", second, "assigned_to", hr.id, "status", "APPOINTMENT");
-        insert("consultation_followups", "consultation_id", old, "assigned_to", hr.id, "status", "CLOSED");
+        insert("consultation_followups", "consultation_id", first, "assigned_to", hr.id, "status", "NEEDS_COUNSELING");
+        insert("consultation_followups", "consultation_id", second, "assigned_to", hr.id, "status", "DOCUMENT_APPOINTMENT", "document_due_on", java.time.LocalDate.now(java.time.ZoneId.of("Asia/Ho_Chi_Minh")));
+        insert("consultation_followups", "consultation_id", old, "assigned_to", hr.id, "status", "NOT_PROCEEDING");
         contract("HR-DRAFT", student, "DRAFT", 1_000_000, 0);
         contract("HR-SIGNED", student, "SIGNED", 1_000_000, 0);
         contract("HR-ACTIVE", student, "ACTIVE", 1_000_000, 0);
@@ -330,12 +332,13 @@ class DashboardIntegrationTest {
         contract("HR-CANCELLED", student, "CANCELLED", 1_000_000, 0);
         insert("training_contracts", "code", "HR-OLD", "student_id", student.id, "status", "SIGNED",
                 "created_at", OffsetDateTime.now().minusWeeks(1));
+        jdbc.update("UPDATE training_contracts SET created_by=? WHERE code LIKE 'HR-%'",hr.id);
 
         JsonNode dashboard = dashboard(login(hr.email), "/api/dashboard");
         assertStat(dashboard, "registrations", 2);
         assertStat(dashboard, "consulting", 2);
-        assertStat(dashboard, "drafts", 1);
-        assertStat(dashboard, "contracts", 3);
+        assertStat(dashboard, "contacted", 1);
+        assertStat(dashboard, "contracted", 0);
         String registrationRows = dashboard.path("panels").toString();
         assertTrue(registrationRows.contains("Current registration one"));
         assertTrue(registrationRows.contains("Current registration two"));
