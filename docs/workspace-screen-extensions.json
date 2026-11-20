@@ -1,0 +1,32 @@
+[
+  {
+    "code": "ListStudentAccount",
+    "fe": "FE-06A",
+    "title": "Cấp tài khoản học viên",
+    "kind": "student_accounts",
+    "functionCode": "ListStudentAccount",
+    "roles": [
+      "MANAGER"
+    ],
+    "public": false,
+    "description": "Nhận hồ sơ được tuyển sinh chuyển sang học vụ, lập hợp đồng và cấp tài khoản theo email học viên.",
+    "scope": "Chỉ nhận hồ sơ tuyển sinh đã được chuyển học vụ hoặc nguồn Excel do Manager nhập. Manager lập hợp đồng trước, sau đó cấp tài khoản và liên kết theo email."
+  },
+  {
+    "code": "ListAdmissionEnrollment",
+    "fe": "FE-04A",
+    "title": "Hoàn tất thủ tục nhập học",
+    "roles": [
+      "HR"
+    ],
+    "proposedRoles": [],
+    "public": false,
+    "scope": "Hai trang chờ chuyển và đã chuyển học vụ; chỉ tuyển sinh được phân công chuyển hồ sơ đủ giấy tờ sang quản lý học vụ.",
+    "actions": [],
+    "variant": "Dashboard hoàn tất thủ tục nhập học",
+    "kind": "list",
+    "functionCode": "ListAdmissionEnrollment",
+    "description": "Tuyển sinh duyệt chuyển hồ sơ đã đủ giấy tờ và theo dõi quá trình học vụ xử lý.",
+    "sections": []
+  }
+]
