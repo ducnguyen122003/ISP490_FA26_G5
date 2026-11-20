@@ -11,10 +11,15 @@ import static com.erhms.workspace.WorkflowData.*;
 public class TrainingWorkflows {
     private static final String PAID_UNASSIGNED_CONTRACT="c.status='ACTIVE' AND COALESCE((SELECT SUM(t.amount) FROM financial_transactions t WHERE t.contract_id=c.id AND t.kind='TUITION' AND t.status='CONFIRMED'),0)>=c.tuition_due AND NOT EXISTS(SELECT 1 FROM training_enrollments linked WHERE linked.contract_id=c.id)";
     private static final String MATCH_CONTRACT_COURSE="(c.course_id=? OR (c.course_id IS NULL AND c.registered_course_name=?))";
+<<<<<<< Updated upstream
+=======
+    private static final String MATCH_SELECTED_CLASS="(c.class_id IS NULL OR c.class_id=?)";
+>>>>>>> Stashed changes
     final WorkflowData d;final MasterDataService masters;final ContractTemplateData contractTemplate;
     public TrainingWorkflows(WorkflowData d,MasterDataService masters,ContractTemplateData contractTemplate){this.d=d;this.masters=masters;this.contractTemplate=contractTemplate;}
     static Map<String,Object> saved(String screen,Object id){return Map.of("screen",screen,"id",String.valueOf(id),"notice","Đã lưu thông tin thành công.");}
 
+<<<<<<< Updated upstream
     private String nextClassCode(){
         String code;
         do{code=String.format(Locale.ROOT,"L-%06d",d.count("SELECT nextval('training_class_code_seq')"));}
@@ -40,11 +45,17 @@ public class TrainingWorkflows {
         return saved("ClassDetail",key);
     }
 
+=======
+>>>>>>> Stashed changes
     public List<Map<String,Object>> unassignedStudents(String classId,User u){
         role(u,"MANAGER");var cl=d.record("classes",classId,u);
         if(cl.get("courseId")==null||!List.of("PLANNED","ACTIVE").contains(cl.get("status")))return List.of();
         var registered=EnrollmentCourses.find(cl.get("courseName"));
+<<<<<<< Updated upstream
         return d.rows("SELECT scoped.id,scoped.full_name,scoped.email,scoped.phone FROM ("+d.base("students",u)+") scoped JOIN m_user account ON account.user_id=scoped.id WHERE account.account_enabled=TRUE AND account.account_locked=FALSE AND NOT EXISTS(SELECT 1 FROM training_enrollments e WHERE e.student_id=scoped.id AND (e.status IN ('ACTIVE','PENDING') OR e.class_id=?)) AND EXISTS(SELECT 1 FROM training_contracts c WHERE c.student_id=scoped.id AND "+MATCH_CONTRACT_COURSE+" AND c.manager_id=? AND "+PAID_UNASSIGNED_CONTRACT+") ORDER BY scoped.full_name,scoped.id",uuid(classId),uuid(cl.get("courseId").toString()),registered==null?null:registered.name(),u.id);
+=======
+        return d.rows("SELECT scoped.id,scoped.student_code,scoped.full_name,scoped.email,scoped.phone FROM ("+d.base("students",u)+") scoped JOIN m_user account ON account.user_id=scoped.id WHERE account.account_enabled=TRUE AND account.account_locked=FALSE AND NOT EXISTS(SELECT 1 FROM training_enrollments e WHERE e.student_id=scoped.id AND (e.status IN ('ACTIVE','PENDING') OR e.class_id=?)) AND EXISTS(SELECT 1 FROM training_contracts c WHERE c.student_id=scoped.id AND "+MATCH_CONTRACT_COURSE+" AND c.manager_id=? AND "+MATCH_SELECTED_CLASS+" AND "+PAID_UNASSIGNED_CONTRACT+") ORDER BY scoped.full_name,scoped.id",uuid(classId),uuid(cl.get("courseId").toString()),registered==null?null:registered.name(),u.id,uuid(classId));
+>>>>>>> Stashed changes
     }
 
     public Map<String,Object> addClassStudents(String id,Map<String,Object> p,User u){
@@ -60,7 +71,11 @@ public class TrainingWorkflows {
         Map<Long,UUID> contracts=new LinkedHashMap<>();
         for(long student:students){
             d.record("students",Long.toString(student),u);
+<<<<<<< Updated upstream
             var eligible=d.rows("SELECT c.id FROM training_contracts c WHERE c.student_id=? AND "+MATCH_CONTRACT_COURSE+" AND c.manager_id=? AND "+PAID_UNASSIGNED_CONTRACT+" ORDER BY c.id",student,courseId,registeredName,u.id);
+=======
+            var eligible=d.rows("SELECT c.id FROM training_contracts c WHERE c.student_id=? AND "+MATCH_CONTRACT_COURSE+" AND c.manager_id=? AND "+MATCH_SELECTED_CLASS+" AND "+PAID_UNASSIGNED_CONTRACT+" ORDER BY c.class_id NULLS LAST,c.id",student,courseId,registeredName,u.id,key);
+>>>>>>> Stashed changes
             if(eligible.isEmpty())throw invalid("students","Chỉ xếp lớp cho học viên đã được kế toán xác nhận đủ học phí của khóa học này và chưa được xếp lớp");
             contracts.put(student,uuid(eligible.get(0).get("id").toString()));
         }
@@ -73,6 +88,7 @@ public class TrainingWorkflows {
         for(long student:students){
             d.one("SELECT user_id FROM m_user WHERE user_id=? FOR UPDATE",student);d.record("students",Long.toString(student),u);d.requireRoleId(student,3);
             if(d.count("SELECT COUNT(*) FROM training_enrollments WHERE student_id=? AND (status IN ('ACTIVE','PENDING') OR class_id=?)",student,key)>0)throw conflict("Học viên đã được xếp lớp hoặc đã có hồ sơ tại lớp này. Hãy tải lại danh sách.");
+<<<<<<< Updated upstream
             if(d.count("SELECT COUNT(*) FROM training_contracts c WHERE c.id=? AND c.student_id=? AND "+MATCH_CONTRACT_COURSE+" AND c.manager_id=? AND "+PAID_UNASSIGNED_CONTRACT,contracts.get(student),student,courseId,registeredName,u.id)==0)throw conflict("Thông tin học phí hoặc xếp lớp đã thay đổi. Hãy tải lại danh sách học viên.");
         }
         d.lock("training_classes",key,p);cl=d.record("classes",id,u);
@@ -80,6 +96,17 @@ public class TrainingWorkflows {
         if(d.count("SELECT COUNT(*) FROM training_enrollments WHERE class_id=? AND status IN ('ACTIVE','PENDING')",key)+students.size()>((Number)cl.get("capacity")).longValue())throw invalid("students","Số học viên được chọn vượt quá chỗ trống của lớp");
         for(long student:students){
             d.jdbc.update("UPDATE training_contracts SET course_id=?,version=version+1 WHERE id=? AND course_id IS NULL",courseId,contracts.get(student));
+=======
+            if(d.count("SELECT COUNT(*) FROM training_contracts c WHERE c.id=? AND c.student_id=? AND "+MATCH_CONTRACT_COURSE+" AND c.manager_id=? AND "+MATCH_SELECTED_CLASS+" AND "+PAID_UNASSIGNED_CONTRACT,contracts.get(student),student,courseId,registeredName,u.id,key)==0)throw conflict("Thông tin học phí hoặc xếp lớp đã thay đổi. Hãy tải lại danh sách học viên.");
+        }
+        d.lock("training_classes",key,p);cl=d.record("classes",id,u);
+        if(!List.of("PLANNED","ACTIVE").contains(cl.get("status")))throw conflict("Chỉ thêm học viên vào lớp đang chuẩn bị hoặc đang học");
+        long additional=0;
+        for(UUID contract:contracts.values())if(d.count("SELECT COUNT(*) FROM training_contracts WHERE id=? AND class_id=?",contract,key)==0)additional++;
+        if(ClassReservations.occupied(d,key,null)+additional>((Number)cl.get("capacity")).longValue())throw invalid("students","Số học viên được chọn vượt quá chỗ trống đã trừ các hợp đồng giữ chỗ của lớp");
+        for(long student:students){
+            d.jdbc.update("UPDATE training_contracts SET course_id=COALESCE(course_id,?),class_id=COALESCE(class_id,?),version=version+1 WHERE id=? AND (course_id IS NULL OR class_id IS NULL)",courseId,key,contracts.get(student));
+>>>>>>> Stashed changes
             d.jdbc.update("INSERT INTO training_enrollments(id,class_id,student_id,status,assignment_status,contract_id) VALUES (?,?,?,'ACTIVE',?,?)",UUID.randomUUID(),key,student,cl.get("lecturerId")==null?"PENDING":"CONFIRMED",contracts.get(student));
         }
         d.jdbc.update("UPDATE training_classes SET version=version+1 WHERE id=?",key);
@@ -182,6 +209,7 @@ public class TrainingWorkflows {
         if(!ready&&!keepExisting)throw invalid("consultationId","Chỉ lập hợp đồng sau khi đã nhận bản scan hồ sơ hoặc nhập học viên từ Excel");
         var registeredCourse=EnrollmentCourses.find(application.get("enrollmentCourse"));
         boolean sameAdmission=existing!=null&&admission.toString().equals(Objects.toString(existing.get("consultationId"),""));
+<<<<<<< Updated upstream
         UUID course=null;
         String requestedCourse=text(p,"courseId",100,false);
         if(!requestedCourse.isEmpty())course=uuid(requestedCourse);
@@ -194,6 +222,18 @@ public class TrainingWorkflows {
         }else throw invalid("courseId","Chọn khóa học hoặc sử dụng hồ sơ có khóa học đăng ký.");
         if(course==null&&registeredCourse==null)throw invalid("courseId","Chọn khóa học hoặc sử dụng hồ sơ có khóa học đăng ký.");
         boolean sameCourse=sameAdmission&&Objects.equals(existing.get("courseId"),course==null?null:course.toString());
+=======
+        String requestedClass=text(p,"classId",100,false);
+        UUID selectedClass=!requestedClass.isEmpty()?uuid(requestedClass):existing!=null&&existing.get("classId")!=null?uuid(existing.get("classId").toString()):null;
+        if(selectedClass==null)throw invalid("classId","Chọn lớp đã được admin chốt kế hoạch trước khi lập hợp đồng.");
+        var targetClass=d.record("classes",selectedClass.toString(),u);
+        if(targetClass.get("courseId")==null)throw invalid("classId","Lớp cần liên kết khóa đào tạo trước khi lập hợp đồng.");
+        UUID course;
+        String requestedCourse=text(p,"courseId",100,false);
+        if(!requestedCourse.isEmpty())course=uuid(requestedCourse);
+        else course=uuid(targetClass.get("courseId").toString());
+        boolean sameCourse=sameAdmission&&Objects.equals(existing.get("courseId"),course.toString());
+>>>>>>> Stashed changes
         Map<String,Object> co=null;
         if(course!=null){
             d.one("SELECT id FROM training_courses WHERE id=? FOR UPDATE",course);
@@ -202,6 +242,23 @@ public class TrainingWorkflows {
             if(registeredCourse!=null&&!sameCourse&&!EnrollmentCourses.normalized(registeredCourse.name()).equals(EnrollmentCourses.normalized(co.get("name").toString())))
                 throw invalid("courseId","Khóa học trên hợp đồng phải khớp khóa học đã đăng ký trong hồ sơ.");
         }
+<<<<<<< Updated upstream
+=======
+        var classLocks=new TreeSet<UUID>();classLocks.add(selectedClass);
+        if(existing!=null&&existing.get("classId")!=null)classLocks.add(uuid(existing.get("classId").toString()));
+        for(UUID locked:classLocks)d.one("SELECT id FROM training_classes WHERE id=? FOR UPDATE",locked);
+        targetClass=d.record("classes",selectedClass.toString(),u);
+        if(!Boolean.TRUE.equals(targetClass.get("planFixed"))||targetClass.get("startsOn")==null||targetClass.get("endsOn")==null||targetClass.get("lecturerId")==null)
+            throw invalid("classId","Chọn lớp có lịch cố định và giảng viên đã được admin xác nhận.");
+        if(!course.toString().equals(targetClass.get("courseId")))throw invalid("classId","Lớp phải thuộc đúng khóa học trên hợp đồng.");
+        if(!List.of("PLANNED","ACTIVE").contains(targetClass.get("status")))throw invalid("classId","Chọn lớp đang chuẩn bị khai giảng hoặc đang hoạt động.");
+        boolean sameClass=existing!=null&&selectedClass.toString().equals(existing.get("classId"));
+        if(!sameClass&&LocalDate.parse(targetClass.get("endsOn").toString()).isBefore(LocalDate.now(ZoneId.of("Asia/Ho_Chi_Minh"))))
+            throw invalid("classId","Lớp đã kết thúc thời gian đào tạo; chọn lớp trong kế hoạch hiện tại.");
+        d.requireRoleId(((Number)targetClass.get("lecturerId")).longValue(),2);
+        if(ClassReservations.occupied(d,selectedClass,id==null?null:key)>=((Number)targetClass.get("capacity")).longValue())
+            throw invalid("classId","Lớp đã đủ sĩ số, bao gồm các hợp đồng đang giữ chỗ. Chọn lớp còn chỗ trống.");
+>>>>>>> Stashed changes
         String courseName=sameCourse&&existing.get("registeredCourseName")!=null?existing.get("registeredCourseName").toString():registeredCourse!=null?registeredCourse.name():co.get("name").toString();
         int courseMonths=sameCourse&&existing.get("registeredDurationMonths")!=null?((Number)existing.get("registeredDurationMonths")).intValue():registeredCourse!=null?registeredCourse.durationMonths():((Number)co.get("durationMonths")).intValue();
         Object managerId=co==null?u.id:co.get("managerId");
@@ -219,18 +276,30 @@ public class TrainingWorkflows {
         }
         if(p.get("studentId")!=null&&!Objects.equals(student,number(p,"studentId",1,Long.MAX_VALUE)))throw invalid("studentId","Tài khoản phải khớp email học viên trong hồ sơ; không chọn tài khoản khác");
         if(existing!=null&&existing.get("studentId")!=null&&!Objects.equals(((Number)existing.get("studentId")).longValue(),student))throw invalid("consultationId","Hợp đồng đã gắn tài khoản; không chuyển sang học viên khác");
+<<<<<<< Updated upstream
         LocalDate start=date(p,"startsOn",true),due=date(p,"paymentDueOn",true);
         BigDecimal tuition=p.containsKey("tuitionDue")?money(p,"tuitionDue"):sameCourse?new BigDecimal(existing.get("tuitionDue").toString()):registeredCourse!=null?registeredCourse.tuitionFee():money(p,"tuitionDue");
         BigDecimal deposit=money(p,"depositDue");
         String terms=text(p,"terms",4000,false),schedule=existing==null?"":Objects.toString(existing.get("paymentSchedule"),"");
         if(id==null)d.jdbc.update("INSERT INTO training_contracts(id,code,student_id,student_email,applicant_name,applicant_phone,consultation_id,course_id,registered_course_name,registered_duration_months,tuition_due,deposit_due,status,created_by,manager_id,starts_on,payment_due_on,payment_schedule,terms) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,'DRAFT',?,?,?,?,?,?)",key,"HD-"+key.toString().substring(0,8).toUpperCase(Locale.ROOT),student,email,applicant,phone,admission,course,courseName,courseMonths,tuition,deposit,u.id,managerId,start,due,schedule,terms);
         else d.jdbc.update("UPDATE training_contracts SET student_id=?,student_email=?,applicant_name=?,applicant_phone=?,consultation_id=?,course_id=?,registered_course_name=?,registered_duration_months=?,tuition_due=?,deposit_due=?,manager_id=?,starts_on=?,payment_due_on=?,payment_schedule=?,terms=?,version=version+1 WHERE id=?",student,email,applicant,phone,admission,course,courseName,courseMonths,tuition,deposit,managerId,start,due,schedule,terms,key);
+=======
+        LocalDate start=LocalDate.parse(targetClass.get("startsOn").toString()),due=date(p,"paymentDueOn",true);
+        if(p.get("startsOn")!=null&&!p.get("startsOn").toString().isBlank()&&!start.equals(date(p,"startsOn",true)))
+            throw invalid("startsOn","Ngày bắt đầu hợp đồng phải trùng ngày khai giảng cố định của lớp đã chọn.");
+        BigDecimal tuition=p.containsKey("tuitionDue")?money(p,"tuitionDue"):sameCourse?new BigDecimal(existing.get("tuitionDue").toString()):registeredCourse!=null?registeredCourse.tuitionFee():money(p,"tuitionDue");
+        BigDecimal deposit=money(p,"depositDue");
+        String terms=text(p,"terms",4000,false),schedule=existing==null?"":Objects.toString(existing.get("paymentSchedule"),"");
+        if(id==null)d.jdbc.update("INSERT INTO training_contracts(id,code,student_id,student_email,applicant_name,applicant_phone,consultation_id,course_id,class_id,registered_course_name,registered_duration_months,tuition_due,deposit_due,status,created_by,manager_id,starts_on,payment_due_on,payment_schedule,terms) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,'DRAFT',?,?,?,?,?,?)",key,"HD-"+key.toString().substring(0,8).toUpperCase(Locale.ROOT),student,email,applicant,phone,admission,course,selectedClass,courseName,courseMonths,tuition,deposit,u.id,managerId,start,due,schedule,terms);
+        else d.jdbc.update("UPDATE training_contracts SET student_id=?,student_email=?,applicant_name=?,applicant_phone=?,consultation_id=?,course_id=?,class_id=?,registered_course_name=?,registered_duration_months=?,tuition_due=?,deposit_due=?,manager_id=?,starts_on=?,payment_due_on=?,payment_schedule=?,terms=?,version=version+1 WHERE id=?",student,email,applicant,phone,admission,course,selectedClass,courseName,courseMonths,tuition,deposit,managerId,start,due,schedule,terms,key);
+>>>>>>> Stashed changes
         d.jdbc.update("UPDATE consultation_followups SET status=CASE WHEN profile_student_id IS NOT NULL THEN 'PROFILE_CREATED' ELSE 'CONTRACTED' END,version=version+1,updated_at=CURRENT_TIMESTAMP WHERE consultation_id=?",admission);
         if(previousAdmission!=null&&!previousAdmission.equals(admission))d.jdbc.update("UPDATE consultation_followups SET status=CASE WHEN profile_student_id IS NOT NULL THEN 'PROFILE_CREATED' WHEN (SELECT intake_source FROM consultation_registrations WHERE id=?)='EXCEL' THEN 'CONTACTED' ELSE 'PROFILE_PENDING' END,version=version+1,updated_at=CURRENT_TIMESTAMP WHERE consultation_id=? AND status='CONTRACTED' AND NOT EXISTS(SELECT 1 FROM training_contracts WHERE consultation_id=? AND status<>'CANCELLED')",previousAdmission,previousAdmission,previousAdmission);
         if(previousAdmission!=null&&!previousAdmission.equals(admission))d.jdbc.update("UPDATE training_contracts SET template_data='{}' WHERE id=?",key);
         contractTemplate.save(key,p,u);
         return saved("TrainingContractDetail",key);
     }
+<<<<<<< Updated upstream
     public Map<String,Object> classroom(String id,Map<String,Object> p,User u){
         role(u,"MANAGER");UUID key=uuid(id);d.record("classes",id,u);
         d.one("SELECT version FROM permission_revision WHERE id=1 FOR UPDATE");d.lock("training_classes",key,p);var currentClass=d.record("classes",id,u);
@@ -246,6 +315,8 @@ public class TrainingWorkflows {
         d.jdbc.update("UPDATE training_classes SET lecturer_id=?,capacity=?,starts_on=?,ends_on=?,status=?,version=version+1 WHERE id=?",teacher,capacity,start,end,state,key);
         return saved("ClassDetail",key);
     }
+=======
+>>>>>>> Stashed changes
     public Map<String,Object> assignment(String id,Map<String,Object> p,User u){
         role(u,"MANAGER");var enrollment=d.record("assignments",id,u);UUID key=uuid(id);
         d.one("SELECT id FROM training_classes WHERE id=? FOR UPDATE",uuid(enrollment.get("classId").toString()));d.lock("training_enrollments",key,p);
@@ -256,6 +327,7 @@ public class TrainingWorkflows {
         d.jdbc.update("UPDATE training_enrollments SET assignment_status='CONFIRMED',version=version+1 WHERE id=?",key);
         d.jdbc.update("UPDATE training_classes SET status='ACTIVE',version=version+1 WHERE id=? AND status='PLANNED' AND starts_on<=CURRENT_DATE",uuid(cl.get("id").toString()));return saved("AutoAssignmentDetail",key);
     }
+<<<<<<< Updated upstream
     public Map<String,Object> session(String id,Map<String,Object> p,User u){
         role(u,"MANAGER");UUID key=id==null?UUID.randomUUID():uuid(id),clId=uuid(p,"classId");d.record("classes",clId.toString(),u);
         // Serialize all room/teacher changes before taking a class or session lock.
@@ -280,6 +352,8 @@ public class TrainingWorkflows {
         if(first!=null&&start.isBefore(first.atStartOfDay(zone).toOffsetDateTime()))throw invalid("startsAt","Buổi học không được trước ngày bắt đầu lớp");
         if(last!=null&&end.isAfter(last.plusDays(1).atStartOfDay(zone).toOffsetDateTime()))throw invalid("endsAt","Buổi học không được sau ngày kết thúc lớp");
     }
+=======
+>>>>>>> Stashed changes
     public Map<String,Object> attendance(String id,Map<String,Object> p,User u,boolean correction){
         role(u,"LECTURER");UUID sessionId=correction?uuid(p,"sessionId"):uuid(id);var session=d.record("sessions",sessionId.toString(),u);d.lock("training_sessions",sessionId,p);
         if(Boolean.TRUE.equals(session.get("attendanceFinalized")))throw conflict("Điểm danh đã chốt. Không được chỉnh sửa ngoài thời hạn/quyền được cấp");
@@ -317,7 +391,12 @@ public class TrainingWorkflows {
         if(d.count("SELECT COUNT(*) FROM training_enrollments WHERE contract_id=?",contractId)>0)return;
         if(ct.get("managerId")==null||(ct.get("courseId")==null&&EnrollmentCourses.find(ct.get("registeredCourseName"))==null))return;
         if(d.count("SELECT COUNT(*) FROM training_contracts c WHERE c.id=? AND "+PAID_UNASSIGNED_CONTRACT,contractId)==0)return;
+<<<<<<< Updated upstream
         notify(((Number)ct.get("managerId")).longValue(),"Học viên đã đủ học phí, chờ xếp lớp","Học phí đã được kế toán xác nhận đủ cho hợp đồng "+ct.get("code")+". Mở danh sách lớp, chọn lớp thuộc khóa học và thêm học viên.","ListClass",null,null);
+=======
+        if(ct.get("classId")!=null)notify(((Number)ct.get("managerId")).longValue(),"Học viên đã đủ học phí, chờ vào lớp đã đăng ký","Học phí đã được xác nhận đủ cho hợp đồng "+ct.get("code")+". Mở lớp đã chọn trên hợp đồng để hoàn tất xếp học viên.","ClassDetail",ct.get("classId").toString(),null);
+        else notify(((Number)ct.get("managerId")).longValue(),"Học viên đã đủ học phí, chờ xếp lớp","Học phí đã được kế toán xác nhận đủ cho hợp đồng "+ct.get("code")+". Mở danh sách lớp, chọn lớp thuộc khóa học và thêm học viên.","ListClass",null,null);
+>>>>>>> Stashed changes
     }
     public Map<String,Object> closureConditions(Map<String,Object> enrollment){
         UUID e=uuid(enrollment.get("id").toString());long student=((Number)enrollment.get("studentId")).longValue();Object contract=enrollment.get("contractId");

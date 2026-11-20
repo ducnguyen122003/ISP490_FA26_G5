@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 const authoritativeFields=new Set(['contractNumber','studentName','studentPhone','studentEmail','courseName','durationMonths','startsOn','tuitionDue','depositDue','paymentDueOn']);
+=======
+const authoritativeFields=new Set(['contractNumber','studentName','studentPhone','studentEmail','courseName','durationMonths','startsOn','endsOn','latestOpeningOn','tuitionDue','depositDue','paymentDueOn']);
+>>>>>>> Stashed changes
 const map=value=>value&&typeof value==='object'&&!Array.isArray(value)?value:{};
 
 export function editableTemplateData(value,metadata){
@@ -67,6 +71,11 @@ export function contractTemplateValue(field,values={},selection={}){
   case 'studentEmail':return ((unchangedAdmission&&values.studentEmail)||admission?.email||values.studentEmail||'').trim().toLowerCase();
   case 'courseName':return (unchangedCourse&&(values.registeredCourseName||values.courseName))||selection.registeredName||selection.course?.name||values.registeredCourseName||values.courseName||'';
   case 'durationMonths':return (unchangedCourse?(values.registeredDurationMonths??values.durationMonths):undefined)??selection.durationMonths??values.registeredDurationMonths??values.durationMonths??'';
+<<<<<<< Updated upstream
+=======
+  case 'endsOn':return selection.selectedClass?.endsOn??values.templateData?.endsOn??values.endsOn??'';
+  case 'latestOpeningOn':return selection.selectedClass?.startsOn??values.templateData?.latestOpeningOn??'';
+>>>>>>> Stashed changes
   case 'startsOn':case 'tuitionDue':case 'depositDue':case 'paymentDueOn':return values[field.key]??'';
   default:return values.templateData?.[field.key]??field.defaultValue??'';
  }

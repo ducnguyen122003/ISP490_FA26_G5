@@ -1,15 +1,25 @@
 {
   "title": "Hợp đồng đào tạo nghề Bách Khoa",
+<<<<<<< Updated upstream
   "version": "BK-VTCOMS-2026-02",
+=======
+  "version": "BK-VTCOMS-2026-03",
+>>>>>>> Stashed changes
   "fixedValues": {
     "centerName": "TRUNG TÂM DẠY NGHỀ BÁCH KHOA",
     "centerAddress": "Hà Nội",
     "centerTaxCode": "12423453246134123",
     "centerPhone": "0944552988",
     "centerEmail": "Ducnahe176071@fpt.edu.vn",
+<<<<<<< Updated upstream
     "centerBankAccount": "999912082003",
     "centerBankAccountHolder": "NGUYEN ANH DUC",
     "centerBankName": "MB Bank",
+=======
+    "centerBankAccount": "3419120803",
+    "centerBankAccountHolder": "NGUYEN ANH DUC",
+    "centerBankName": "BIDV - PGD Hàm Yên",
+>>>>>>> Stashed changes
     "trainingLocation": "Hà Nội",
     "additionalPracticeLocation": "Hà Nội",
     "complaintContactAddress": "Ducnahe176071@fpt.edu.vn"
