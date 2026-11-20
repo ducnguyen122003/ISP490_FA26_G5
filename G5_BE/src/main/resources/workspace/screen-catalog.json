@@ -1585,11 +1585,7 @@
     "variant": "Màn hình chính",
     "kind": "list",
     "functionCode": "ListClass",
-<<<<<<< Updated upstream
-    "description": "Tạo lớp, thêm học viên đã đóng đủ học phí và chưa được xếp lớp, quản lý lịch học.",
-=======
     "description": "Kế hoạch lớp theo năm, giảng viên và lịch học cố định. Quản lý học viên xếp học viên theo lớp đã chọn trên hợp đồng.",
->>>>>>> Stashed changes
     "headers": [
       "LỚP / KHÓA",
       "GIẢNG VIÊN",
@@ -1648,18 +1644,6 @@
     "fe": "FE-09",
     "title": "Tạo lớp học",
     "roles": [
-<<<<<<< Updated upstream
-      "MANAGER"
-    ],
-    "proposedRoles": [],
-    "public": false,
-    "scope": "Khóa học và học viên được phân công quản lý.",
-    "actions": "Tạo lớp học với mã tự tăng, ngày bắt đầu, sĩ số và giảng viên phụ trách.",
-    "variant": "Màn hình chính",
-    "kind": "form",
-    "functionCode": "AddClass",
-    "description": "Chọn khóa học và ngày bắt đầu. Mã lớp được cấp tự động khi tạo thành công.",
-=======
       "ADMIN"
     ],
     "proposedRoles": [],
@@ -1670,7 +1654,6 @@
     "kind": "form",
     "functionCode": "AddClass",
     "description": "Tạo kế hoạch riêng cho từng năm. Ngày học, các thứ, giờ và phòng được cố định sau khi tạo lớp.",
->>>>>>> Stashed changes
     "back": "ListClass",
     "save": "Tạo lớp học",
     "sections": []
@@ -1689,11 +1672,7 @@
     "variant": "Màn hình chính",
     "kind": "form",
     "functionCode": "EditClass",
-<<<<<<< Updated upstream
-    "description": "Cập nhật ngày học, sĩ số và phân công giảng viên cho lớp.",
-=======
     "description": "Cập nhật sĩ số, trạng thái và giảng viên. Ngày học, giờ học và phòng của kế hoạch không thay đổi.",
->>>>>>> Stashed changes
     "notes": [
       "Kiểm tra lịch giảng viên, phòng và sĩ số.",
       "Lưu người thực hiện và lý do điều chỉnh."

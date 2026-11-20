@@ -64,11 +64,7 @@ class ScreenWorkflowIntegrationTest {
  void placePaidStudent(String contract)throws Exception{
   var ct=view(manager,"TrainingContractDetail",contract).path("record");
   assertEquals(0,jdbc.queryForObject("SELECT COUNT(*) FROM training_enrollments WHERE contract_id=?",Integer.class,UUID.fromString(contract)));
-<<<<<<< Updated upstream
-  String cl=save(manager,"AddClass",null,values("courseId",ct.path("courseId").asText(),"name","Lớp thực hành","lecturerId",lecturer.id,"capacity",10,"startsOn",ct.path("startsOn").asText(),"endsOn","2027-03-31")).path("id").asText();
-=======
   String cl=ct.path("classId").asText();
->>>>>>> Stashed changes
   assertTrue(view(manager,"ClassDetail",cl).path("related").path("unassignedStudents").toString().contains(student.email));
   action(manager,"ClassDetail",cl,"add-students",values("version",0,"students",List.of(values("id",student.id))));
  }
@@ -115,11 +111,7 @@ class ScreenWorkflowIntegrationTest {
   assertEquals(manager.id,view(admin,"CourseDetail",course).path("record").path("managerId").asLong());
   importAndConfirm(contract,"TUITION",1000);
   assertEquals(1,view(admin,"CourseDetail",course).path("related").path("classes").size());
-<<<<<<< Updated upstream
-  read(admin,"ListClass",null).andExpect(status().isForbidden());
-=======
   read(admin,"ListClass",null).andExpect(status().isOk());
->>>>>>> Stashed changes
  }
  @Test void courseManagerMustBeActiveAndHaveTheManagerRole()throws Exception{
   var input=courseInput();input.remove("managerId");write(admin,"AddCourse",null,input).andExpect(status().isBadRequest()).andExpect(jsonPath("$.fields.managerId").exists());

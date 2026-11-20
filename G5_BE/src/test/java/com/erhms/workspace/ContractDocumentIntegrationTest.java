@@ -40,11 +40,7 @@ class ContractDocumentIntegrationTest {
     }
     @BeforeEach void setup(){manager=actor("MANAGER");otherManager=actor("MANAGER");hr=actor("HR");student=actor("STUDENT");admin=actor("ADMIN");admission=admission("Nguyễn Anh Đức");}
     Map<String,Object> input(UUID source,Map<String,Object> details){return new LinkedHashMap<>(Map.of("consultationId",source.toString(),"startsOn","2026-12-01","paymentDueOn","2026-11-30","tuitionDue",13500000,"depositDue",500000,"terms","Điều khoản của mẫu hợp đồng","templateData",details));}
-<<<<<<< Updated upstream
-    ResultActions save(String code,String id,Map<String,Object> input)throws Exception{return mvc.perform(post("/api/workspace/screens/"+code+(id==null?"":"/"+id)).with(user(manager.email).roles("MANAGER")).with(csrf()).contentType("application/json").content(json.writeValueAsString(input)));}
-=======
     ResultActions save(String code,String id,Map<String,Object> input)throws Exception{input=com.erhms.ClassPlanTestFixtures.withClass(jdbc,manager.id,input);return mvc.perform(post("/api/workspace/screens/"+code+(id==null?"":"/"+id)).with(user(manager.email).roles("MANAGER")).with(csrf()).contentType("application/json").content(json.writeValueAsString(input)));}
->>>>>>> Stashed changes
     JsonNode body(MvcResult result)throws Exception{return json.readTree(result.getResponse().getContentAsString(StandardCharsets.UTF_8));}
     String create(Map<String,Object> details)throws Exception{return body(save("AddTrainingContract",null,input(admission,details)).andExpect(status().isOk()).andReturn()).path("id").asText();}
     JsonNode detail(String id)throws Exception{return body(mvc.perform(get("/api/workspace/screens/EditTrainingContract/"+id).with(user(manager.email).roles("MANAGER"))).andExpect(status().isOk()).andReturn());}
@@ -70,15 +66,10 @@ class ContractDocumentIntegrationTest {
     @Test void completedDocumentProducesAnInlinePdfAndADownloadWithTheSavedVietnameseValues()throws Exception{
         var details=ContractTemplateFixtures.completeDetails(templates);details.put("studentName","Tên do client giả mạo");details.put("initialTotal",1);
         details.put("centerTaxCode","FORGED-TAX-CODE");details.put("centerBankAccount","FORGED-BANK-ACCOUNT");
-<<<<<<< Updated upstream
-        String id=create(details);var stored=detail(id).path("record").path("templateData");
-        assertEquals("Nguyễn Anh Đức",stored.path("studentName").asText());assertEquals(14000000,stored.path("initialTotal").asLong());
-=======
         details.put("endsOn","2099-01-01");details.put("latestOpeningOn","2099-01-01");
         String id=create(details);var stored=detail(id).path("record").path("templateData");
         assertEquals("Nguyễn Anh Đức",stored.path("studentName").asText());assertEquals(14000000,stored.path("initialTotal").asLong());
         assertEquals("2027-04-01",stored.path("endsOn").asText());assertEquals("2026-12-01",stored.path("latestOpeningOn").asText());
->>>>>>> Stashed changes
         jdbc.update("UPDATE training_contracts SET payment_schedule='LEGACY-SCHEDULE-MUST-NOT-APPEAR' WHERE id=?",UUID.fromString(id));
         var inline=pdf(manager,id,false).andExpect(status().isOk()).andExpect(content().contentType("application/pdf"))
                 .andExpect(header().string("Content-Disposition",org.hamcrest.Matchers.startsWith("inline;"))).andExpect(header().string("Cache-Control","private, no-store")).andReturn();
@@ -86,10 +77,7 @@ class ContractDocumentIntegrationTest {
             String text=new PDFTextStripper().getText(document);assertTrue(text.contains("Nguyễn Anh Đức"));assertTrue(text.contains("13.500.000"));
             assertFalse(text.replaceAll("\\s+","").contains("PHỤLỤC03TIẾPTHEO"));assertFalse(text.contains("Tên do client giả mạo"));assertFalse(text.contains("LEGACY-SCHEDULE-MUST-NOT-APPEAR"));
             assertFalse(text.contains("FORGED-TAX-CODE"));assertFalse(text.contains("FORGED-BANK-ACCOUNT"));
-<<<<<<< Updated upstream
-=======
             assertFalse(text.contains("2099"));
->>>>>>> Stashed changes
         }
         pdf(manager,id,true).andExpect(status().isOk()).andExpect(header().string("Content-Disposition",org.hamcrest.Matchers.startsWith("attachment;")))
                 .andExpect(header().string("Content-Disposition",org.hamcrest.Matchers.containsString(".pdf")));

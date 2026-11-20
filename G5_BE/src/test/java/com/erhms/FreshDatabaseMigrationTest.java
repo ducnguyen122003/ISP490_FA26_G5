@@ -26,8 +26,6 @@ class FreshDatabaseMigrationTest {
     private static final String PASSWORD = "Demo@123456";
 
     @Test
-<<<<<<< Updated upstream
-=======
     void annualClassPlanUpgradePreservesLegacyCalendarsContractsAndReadOnlyManagerAccess()throws Exception{
         String url=databaseUrl();UUID course=UUID.randomUUID(),planned=UUID.randomUUID(),undated=UUID.randomUUID(),session=UUID.randomUUID(),contract=UUID.randomUUID();long revision;
         Flyway.configure().dataSource(url,"sa","").locations("classpath:db/migration").target("28").load().migrate();
@@ -119,7 +117,6 @@ class FreshDatabaseMigrationTest {
     }
 
     @Test
->>>>>>> Stashed changes
     void wetSignatureUpgradeKeepsRequiredFileSizeWhenMetadataIncludesANotNullCheck()throws Exception{
         String url=databaseUrl();UUID file=UUID.randomUUID();
         Flyway.configure().dataSource(url,"sa","").locations("classpath:db/migration").target("25").load().migrate();
@@ -130,11 +127,7 @@ class FreshDatabaseMigrationTest {
             long actor=scalarLong(c,"SELECT MIN(user_id) FROM m_user");
             execute(c,"INSERT INTO workflow_files(id,uploaded_by,filename,content_type,file_size,file_data) VALUES (?,?,'existing.pdf','application/pdf',5,?)",file,actor,new byte[]{37,80,68,70,45});
         }
-<<<<<<< Updated upstream
-        assertEquals(1,flyway(url).migrate().migrationsExecuted);
-=======
         assertEquals(4,flyway(url).migrate().migrationsExecuted);
->>>>>>> Stashed changes
         try(Connection c=connection(url)){
             assertEquals(1,scalarLong(c,"SELECT COUNT(*) FROM workflow_files WHERE id='"+file+"' AND file_size=5"));
             assertEquals(1,scalarLong(c,"SELECT COUNT(*) FROM information_schema.table_constraints WHERE LOWER(table_name)='workflow_files' AND LOWER(constraint_name)='ck_file_size_required'"));
@@ -157,11 +150,7 @@ class FreshDatabaseMigrationTest {
             execute(c,"INSERT INTO training_contracts(id,code,student_email,applicant_name,status) VALUES (?,'PENDING-APPROVAL','pending@student.test','Pending learner','DRAFT')",draft);
             execute(c,"DELETE FROM role_function WHERE role_id=7 AND function_code='ListAdmissionApplication'");
         }
-<<<<<<< Updated upstream
-        assertEquals(1,flyway(url).migrate().migrationsExecuted);
-=======
         assertEquals(4,flyway(url).migrate().migrationsExecuted);
->>>>>>> Stashed changes
         try(Connection c=connection(url)){
             assertEquals(1,scalarLong(c,"SELECT COUNT(*) FROM training_contracts WHERE id='"+legacy+"' AND status='SIGNED' AND student_id IS NOT NULL AND signature_approved_at IS NOT NULL AND signature_evidence='Existing signature evidence'"));
             assertEquals(1,scalarLong(c,"SELECT COUNT(*) FROM training_contracts WHERE id='"+draft+"' AND status='DRAFT' AND signature_approved_at IS NULL AND student_id IS NULL"));
@@ -182,11 +171,7 @@ class FreshDatabaseMigrationTest {
         try(Connection c=connection(url)){
             execute(c,"INSERT INTO training_contracts(id,code,student_email,applicant_name,registered_course_name,registered_duration_months,tuition_due,status,terms) VALUES (?,'OLD-TEMPLATE-CONTRACT','old-student@test.local','Existing student','Existing program',4,13500000,'DRAFT','Agreed terms')",contract);
         }
-<<<<<<< Updated upstream
-        assertEquals(2,flyway(url).migrate().migrationsExecuted);
-=======
         assertEquals(5,flyway(url).migrate().migrationsExecuted);
->>>>>>> Stashed changes
         try(Connection c=connection(url)){
             assertEquals(1,scalarLong(c,"SELECT COUNT(*) FROM training_contracts WHERE id='"+contract+"' AND template_data='{}' AND tuition_due=13500000 AND terms='Agreed terms' AND registered_course_name='Existing program' AND registered_duration_months=4"));
         }
@@ -203,11 +188,7 @@ class FreshDatabaseMigrationTest {
             execute(c,"INSERT INTO training_courses(id,code,name,profession,duration_months,total_sessions,tuition_fee,objectives,status,manager_id,class_capacity) VALUES (?,'SNAPSHOT-COURSE','Existing course','Training',4,20,14200000,'Training','ACTIVE',?,20)",course,manager);
             execute(c,"INSERT INTO training_contracts(id,code,course_id,manager_id,tuition_due,status,terms,student_email,applicant_name) VALUES (?,'SNAPSHOT-CONTRACT',?,?,13500000,'DRAFT','Existing terms','snapshot-student@test.local','Existing applicant')",contract,course,manager);
         }
-<<<<<<< Updated upstream
-        assertEquals(3,flyway(url).migrate().migrationsExecuted);
-=======
         assertEquals(6,flyway(url).migrate().migrationsExecuted);
->>>>>>> Stashed changes
         try(Connection c=connection(url)){
             assertEquals(1,scalarLong(c,"SELECT COUNT(*) FROM training_contracts WHERE id='"+contract+"' AND registered_course_name='Existing course' AND registered_duration_months=4 AND tuition_due=13500000 AND terms='Existing terms'"));
             execute(c,"UPDATE training_courses SET name='Renamed course',duration_months=7 WHERE id=?",course);
@@ -224,11 +205,7 @@ class FreshDatabaseMigrationTest {
         try(Connection c=connection(url)){
             execute(c,"INSERT INTO consultation_registrations(id,full_name,phone,program_name,contact_time,created_date) VALUES (?,'Học viên cũ','0912345678','Sửa máy','any',CURRENT_TIMESTAMP)",admission);
         }
-<<<<<<< Updated upstream
-        assertEquals(4,flyway(url).migrate().migrationsExecuted);
-=======
         assertEquals(7,flyway(url).migrate().migrationsExecuted);
->>>>>>> Stashed changes
         try(Connection c=connection(url)){
             assertEquals(1,scalarLong(c,"SELECT COUNT(*) FROM consultation_registrations WHERE id='"+admission+"' AND program_name='Sửa máy' AND enrollment_course IS NULL"));
             for(String course:List.of("Sửa chữa máy tính Laptop chuyên nghiệp","Sửa chữa máy tính PC & máy in","Sửa chữa Điện tử - Điện gia dụng","Sửa chữa Điện lạnh, Điện gia dụng & Inverter"))
@@ -252,11 +229,7 @@ class FreshDatabaseMigrationTest {
             }
             execute(c,"INSERT INTO training_contracts(id,code,consultation_id,student_email,applicant_name,status) VALUES (?,'FORWARD-OLD-CONTRACT',?,'hocvien@gmail.com','Học viên','DRAFT')",UUID.randomUUID(),records.get("WITH_CONTRACT"));
         }
-<<<<<<< Updated upstream
-        assertEquals(5,flyway(url).migrate().migrationsExecuted);
-=======
         assertEquals(8,flyway(url).migrate().migrationsExecuted);
->>>>>>> Stashed changes
         try(Connection c=connection(url)){
             for(String state:List.of("PROFILE_PENDING","EXCEL"))assertEquals(1,scalarLong(c,"SELECT COUNT(*) FROM consultation_followups WHERE consultation_id='"+records.get(state)+"' AND forwarded_at IS NULL AND version=4"));
             for(String state:List.of("CONTRACTED","PROFILE_CREATED","WITH_CONTRACT"))assertEquals(1,scalarLong(c,"SELECT COUNT(*) FROM consultation_followups WHERE consultation_id='"+records.get(state)+"' AND forwarded_at IS NOT NULL AND forwarded_by IS NOT NULL AND version=4"));
@@ -275,11 +248,7 @@ class FreshDatabaseMigrationTest {
                 execute(c,"INSERT INTO consultation_registrations(id,full_name,phone,program_name,contact_time,created_date) VALUES (?,'Hồ sơ giữ nguyên','0912345678','Điện','any',CURRENT_TIMESTAMP)",admission);
                 if(revoked)execute(c,"DELETE FROM role_function WHERE role_id=7 AND function_code='ListAdmissionApplication'");
             }
-<<<<<<< Updated upstream
-            assertEquals(6,flyway(url).migrate().migrationsExecuted);
-=======
             assertEquals(9,flyway(url).migrate().migrationsExecuted);
->>>>>>> Stashed changes
             try(Connection c=connection(url)){
                 assertEquals(revoked?0:1,scalarLong(c,"SELECT COUNT(*) FROM role_function WHERE role_id=7 AND function_code='ListAdmissionEnrollment'"));
                 assertEquals(0,scalarLong(c,"SELECT COUNT(*) FROM role_function WHERE role_id<>7 AND function_code='ListAdmissionEnrollment'"));
@@ -302,11 +271,7 @@ class FreshDatabaseMigrationTest {
             execute(c,"INSERT INTO workflow_files(id,uploaded_by,filename,content_type,file_size,file_data) VALUES (?,?,'old.png','image/png',?,?)",file,actor,png.length,png);
             execute(c,"INSERT INTO consultation_followups(id,consultation_id,status,scan_file_id,profile_submitted_at) VALUES (?,?,'PROFILE_PENDING',?,CURRENT_TIMESTAMP)",followup,admission,file);
         }
-<<<<<<< Updated upstream
-        assertEquals(7,flyway(url).migrate().migrationsExecuted);
-=======
         assertEquals(10,flyway(url).migrate().migrationsExecuted);
->>>>>>> Stashed changes
         try(Connection c=connection(url)) {
             assertEquals(1,scalarLong(c,"SELECT COUNT(*) FROM admission_profile_documents WHERE consultation_id='"+admission+"' AND file_id='"+file+"' AND document_type='LEGACY_SCAN'"));
             assertEquals(1,scalarLong(c,"SELECT COUNT(*) FROM consultation_followups WHERE consultation_id='"+admission+"' AND scan_file_id='"+file+"' AND status='PROFILE_PENDING'"));
@@ -332,11 +297,7 @@ class FreshDatabaseMigrationTest {
                 execute(c,"INSERT INTO consultation_notes(id,consultation_id,actor_id,channel,outcome,content,appointment_at) VALUES (?,?,?,'PHONE',?,'Nội dung lịch sử',?)",UUID.randomUUID(),admission,actor,state.equals("EXCEL")?"CONTACTED":state,state.equals("APPOINTMENT")?callback:null);
             }
         }
-<<<<<<< Updated upstream
-        assertEquals(8,flyway(url).migrate().migrationsExecuted);
-=======
         assertEquals(11,flyway(url).migrate().migrationsExecuted);
->>>>>>> Stashed changes
         try(Connection c=connection(url)) {
             assertEquals(2,scalarLong(c,"SELECT COUNT(*) FROM consultation_followups WHERE status='NEEDS_COUNSELING' AND version=3"));
             assertEquals(1,scalarLong(c,"SELECT COUNT(*) FROM consultation_followups WHERE status='NEEDS_COUNSELING' AND appointment_at IS NOT NULL"));
@@ -361,11 +322,7 @@ class FreshDatabaseMigrationTest {
             student=scalarLong(c,"SELECT user_id FROM m_user WHERE email='old-contract@student.test'");
             execute(c,"INSERT INTO training_contracts(id,code,student_id,status) VALUES (?,'OLD-LINKED',?,'SIGNED')",old,student);
         }
-<<<<<<< Updated upstream
-        assertEquals(9,flyway(url).migrate().migrationsExecuted);
-=======
         assertEquals(12,flyway(url).migrate().migrationsExecuted);
->>>>>>> Stashed changes
         try(Connection c=connection(url)) {
             assertEquals(student,scalarLong(c,"SELECT student_id FROM training_contracts WHERE code='OLD-LINKED'"));
             assertEquals(1,scalarLong(c,"SELECT COUNT(*) FROM training_contracts c JOIN m_user u ON u.user_id=c.student_id WHERE c.id='"+old+"' AND c.student_email=LOWER(TRIM(u.email)) AND c.applicant_name=u.full_name"));
@@ -385,11 +342,7 @@ class FreshDatabaseMigrationTest {
             execute(c,"INSERT INTO consultation_registrations(id,full_name,phone,program_name,contact_time,created_date) VALUES (?,'Học viên cũ','0912345678','Khóa cũ','any',CURRENT_TIMESTAMP)",admission);
             execute(c,"INSERT INTO consultation_followups(id,consultation_id,status,version) VALUES (?,?,'CONTACTED',4)",followup,admission);
         }
-<<<<<<< Updated upstream
-        assertEquals(10,flyway(url).migrate().migrationsExecuted);
-=======
         assertEquals(13,flyway(url).migrate().migrationsExecuted);
->>>>>>> Stashed changes
         try(Connection c=connection(url)) {
             assertEquals(1,scalarLong(c,"SELECT COUNT(*) FROM consultation_followups WHERE status='NEEDS_COUNSELING' AND version=5 AND scan_file_id IS NULL"));
             execute(c,"UPDATE consultation_followups SET status='PROFILE_PENDING' WHERE id=?",followup);
@@ -407,19 +360,11 @@ class FreshDatabaseMigrationTest {
         try(Connection c=connection(url)) {
             execute(c,"INSERT INTO training_classes(id,code,name,status) VALUES (?,'LEGACY-CLASS','Lớp đã tồn tại','PLANNED')",existing);
         }
-<<<<<<< Updated upstream
-        assertEquals(11,flyway(url).migrate().migrationsExecuted);
-        try(Connection c=connection(url)) {
-            assertEquals(1,scalarLong(c,"SELECT COUNT(*) FROM training_classes WHERE id='"+existing+"' AND code='LEGACY-CLASS' AND name='Lớp đã tồn tại'"));
-            assertEquals(1,scalarLong(c,"SELECT COUNT(*) FROM role_function WHERE function_code='AddClass'"));
-            assertEquals(6,scalarLong(c,"SELECT role_id FROM role_function WHERE function_code='AddClass'"));
-=======
         assertEquals(14,flyway(url).migrate().migrationsExecuted);
         try(Connection c=connection(url)) {
             assertEquals(1,scalarLong(c,"SELECT COUNT(*) FROM training_classes WHERE id='"+existing+"' AND code='LEGACY-CLASS' AND name='Lớp đã tồn tại'"));
             assertEquals(1,scalarLong(c,"SELECT COUNT(*) FROM role_function WHERE function_code='AddClass'"));
             assertEquals(1,scalarLong(c,"SELECT role_id FROM role_function WHERE function_code='AddClass'"));
->>>>>>> Stashed changes
             assertEquals(1,scalarLong(c,"SELECT nextval('training_class_code_seq')"));
             assertEquals(2,scalarLong(c,"SELECT nextval('training_class_code_seq')"));
         }
@@ -435,17 +380,10 @@ class FreshDatabaseMigrationTest {
             usersBefore=scalarLong(c,"SELECT COUNT(*) FROM m_user");
             revision=scalarLong(c,"SELECT version FROM permission_revision WHERE id=1");
         }
-<<<<<<< Updated upstream
-        assertEquals(13,flyway(url).migrate().migrationsExecuted);
-        try(Connection c=connection(url)) {
-            assertEquals(usersBefore,scalarLong(c,"SELECT COUNT(*) FROM m_user"));
-            assertEquals(revision+4,scalarLong(c,"SELECT version FROM permission_revision WHERE id=1"));
-=======
         assertEquals(16,flyway(url).migrate().migrationsExecuted);
         try(Connection c=connection(url)) {
             assertEquals(usersBefore,scalarLong(c,"SELECT COUNT(*) FROM m_user"));
             assertEquals(revision+5,scalarLong(c,"SELECT version FROM permission_revision WHERE id=1"));
->>>>>>> Stashed changes
             assertEquals(1,scalarLong(c,"SELECT COUNT(*) FROM role_function WHERE function_code='ListStudentAccount'"));
             assertEquals(6,scalarLong(c,"SELECT role_id FROM role_function WHERE function_code='ListStudentAccount'"));
             assertEquals(1,scalarLong(c,"SELECT COUNT(*) FROM m_function WHERE function_code='ListStudentAccount' AND path='/screens/ListStudentAccount'"));
@@ -467,19 +405,11 @@ class FreshDatabaseMigrationTest {
             execute(c,"INSERT INTO role_function(role_id,function_code) VALUES (1,'AddCourse')");
             execute(c,"INSERT INTO role_function(role_id,function_code) VALUES (3,'ListProfession')");
         }
-<<<<<<< Updated upstream
-        assertEquals(14,flyway(url).migrate().migrationsExecuted);
-        try(Connection c=connection(url)) {
-            assertEquals(0,scalarLong(c,"SELECT COUNT(*) FROM role_function WHERE role_id<>1 AND function_code IN "+codes));
-            assertEquals(7,scalarLong(c,"SELECT COUNT(*) FROM role_function WHERE role_id=1 AND function_code IN "+codes));
-            assertEquals(revision+5,scalarLong(c,"SELECT version FROM permission_revision WHERE id=1"));
-=======
         assertEquals(17,flyway(url).migrate().migrationsExecuted);
         try(Connection c=connection(url)) {
             assertEquals(0,scalarLong(c,"SELECT COUNT(*) FROM role_function WHERE role_id<>1 AND function_code IN "+codes));
             assertEquals(7,scalarLong(c,"SELECT COUNT(*) FROM role_function WHERE role_id=1 AND function_code IN "+codes));
             assertEquals(revision+6,scalarLong(c,"SELECT version FROM permission_revision WHERE id=1"));
->>>>>>> Stashed changes
             assertEquals(1,scalarLong(c,"SELECT COUNT(*) FROM training_courses WHERE code='EXISTING' AND name='Khóa cũ' AND version=0 AND manager_id="+manager));
             assertEquals(1,scalarLong(c,"SELECT COUNT(*) FROM m_profession WHERE code='EXISTING' AND name='Ngành cũ'"));
             assertEquals(0,flyway(url).migrate().migrationsExecuted);
@@ -499,11 +429,7 @@ class FreshDatabaseMigrationTest {
             execute(c,"INSERT INTO training_courses(id,code,name,profession,duration_months,total_sessions,tuition_fee,objectives,status,manager_id,class_capacity) VALUES (?,'TRANSFER-COURSE','Khóa cũ','Điện',3,20,1000,'Mục tiêu','OPEN',?,20)",course,manager);
             execute(c,"INSERT INTO training_contracts(id,code,student_id,course_id,status,created_by,terms) VALUES (?,'TRANSFER-DRAFT',?,?,'DRAFT',?,'Điều khoản cũ')",contract,hr,course,hr);
         }
-<<<<<<< Updated upstream
-        assertEquals(15,flyway(url).migrate().migrationsExecuted);
-=======
         assertEquals(18,flyway(url).migrate().migrationsExecuted);
->>>>>>> Stashed changes
         try(Connection c=connection(url)) {
             assertEquals(0,scalarLong(c,"SELECT COUNT(*) FROM role_function WHERE role_id=7 AND function_code IN ('ListTrainingContract','AddTrainingContract','EditTrainingContract','TrainingContractDetail','ContractSignature')"));
             assertEquals(5,scalarLong(c,"SELECT COUNT(*) FROM role_function WHERE role_id=6 AND function_code IN ('ListTrainingContract','AddTrainingContract','EditTrainingContract','TrainingContractDetail','ContractSignature')"));
@@ -527,11 +453,7 @@ class FreshDatabaseMigrationTest {
             execute(c,"INSERT INTO training_contracts(id,code,student_id,status) VALUES (?,'OLD-CONTRACT',?,'DRAFT')",contract,user);
             execute(c,"INSERT INTO financial_transactions(id,contract_id,kind,amount,status,bank_name) VALUES (?,?,'TUITION',100,'PENDING','vietcombank')",payment,contract);
         }
-<<<<<<< Updated upstream
-        assertEquals(16,flyway(url).migrate().migrationsExecuted);
-=======
         assertEquals(19,flyway(url).migrate().migrationsExecuted);
->>>>>>> Stashed changes
         try(Connection c=connection(url)) {
             assertEquals(1,scalarLong(c,"SELECT COUNT(*) FROM m_equipment_group"));
             assertEquals(10,scalarLong(c,"SELECT COUNT(*) FROM m_bank"));
@@ -548,11 +470,7 @@ class FreshDatabaseMigrationTest {
     void migrationsCreateFinalSchemaAndRunOnlyOnce() throws Exception {
         String url = databaseUrl();
         Flyway flyway = flyway(url);
-<<<<<<< Updated upstream
-        assertEquals(26, flyway.migrate().migrationsExecuted);
-=======
         assertEquals(29, flyway.migrate().migrationsExecuted);
->>>>>>> Stashed changes
         try (Connection connection = connection(url)) {
             assertEquals(Set.of("m_role", "m_user", "recruitment_requests", "request_events",
                             "consultation_registrations", "user_login_events", "training_classes",
@@ -563,11 +481,7 @@ class FreshDatabaseMigrationTest {
                             "permission_revision", "system_settings", "system_audit_log", "training_courses", "course_assessments",
                             "course_lecturers", "student_profiles", "consultation_notes", "payment_instructions", "asset_maintenance",
                             "deposit_settlements", "user_notifications", "workflow_files", "admission_profile_documents", "m_equipment_group",
-<<<<<<< Updated upstream
-                            "m_storage_location", "m_profession", "m_classroom", "m_bank", "contract_signing_history"),
-=======
                             "m_storage_location", "m_profession", "m_classroom", "m_bank", "contract_signing_history", "student_payment_submissions"),
->>>>>>> Stashed changes
                     names(connection, """
                             SELECT LOWER(table_name) FROM information_schema.tables
                             WHERE table_schema = CURRENT_SCHEMA()
@@ -631,11 +545,7 @@ class FreshDatabaseMigrationTest {
         }
         var upgrade = Flyway.configure().dataSource(url, "sa", "")
                 .locations("classpath:db/migration").baselineOnMigrate(true).baselineVersion("1").load();
-<<<<<<< Updated upstream
-        assertEquals(25, upgrade.migrate().migrationsExecuted);
-=======
         assertEquals(28, upgrade.migrate().migrationsExecuted);
->>>>>>> Stashed changes
         try (Connection connection = connection(url)) {
             assertEquals(3, scalarLong(connection, "SELECT COUNT(*) FROM m_user"));
             assertEquals(1, scalarLong(connection, "SELECT COUNT(*) FROM m_user WHERE full_name = 'Existing user'"));
@@ -679,11 +589,7 @@ class FreshDatabaseMigrationTest {
         }
 
         Flyway upgrade = flyway(url);
-<<<<<<< Updated upstream
-        assertEquals(24, upgrade.migrate().migrationsExecuted);
-=======
         assertEquals(27, upgrade.migrate().migrationsExecuted);
->>>>>>> Stashed changes
         try (Connection connection = connection(url)) {
             assertEquals(Set.of("id", "full_name", "phone", "email", "contact_time",
                             "description", "created_date", "program_name", "intake_source", "imported_by", "enrollment_course"),

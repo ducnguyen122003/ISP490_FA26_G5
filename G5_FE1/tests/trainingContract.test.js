@@ -15,8 +15,6 @@ const fixtures=()=>({
 });
 const courseField={key:'courseId',label:'Khóa học',type:'select',source:'courses',required:true};
 
-<<<<<<< Updated upstream
-=======
 test('choosing a planned class fixes the start date and course while admission changes clear the old class',()=>{
  const options=fixtures();options.classes=[{id:'class-0',courseId:'course-0',courseName:catalog[0].name,status:'PLANNED',remainingSlots:3,planYear:2027,startsOn:'2027-01-04',endsOn:'2027-04-30'}];
  const initial=initialTrainingContractValues('AddTrainingContract',{consultationId:'admission-0',classId:'old',startsOn:'2026-01-01'},options);
@@ -40,7 +38,6 @@ test('legacy admissions choose a class to derive its course instead of entering 
  assert.equal(trainingContractCourseField(courseField,trainingContractSelection(selected,options)).displayValue,catalog[1].name);
 });
 
->>>>>>> Stashed changes
 test('all four registered courses populate their name fee and duration without any training catalog records',()=>{
  const options=fixtures();options.courses=[];
  for(let index=0;index<catalog.length;index++){

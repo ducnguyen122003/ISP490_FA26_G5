@@ -42,14 +42,11 @@ public class ContractTemplateData {
             definition=json.readValue(input,new TypeReference<LinkedHashMap<String,Object>>(){});
         }catch(IOException failure){throw new IllegalStateException("Không đọc được cấu hình mẫu hợp đồng",failure);}
         fixedValues=json.convertValue(definition.getOrDefault("fixedValues",Map.of()),new TypeReference<LinkedHashMap<String,Object>>(){});
-<<<<<<< Updated upstream
-=======
         var receivingBank=PaymentReceivingAccount.destination();
         fixedValues.put("centerBankAccount",receivingBank.get("accountNumber"));
         fixedValues.put("centerBankAccountHolder",receivingBank.get("accountHolder"));
         fixedValues.put("centerBankName",receivingBank.get("bankName"));
         definition.put("fixedValues",new LinkedHashMap<>(fixedValues));
->>>>>>> Stashed changes
         for(var section:objects(definition.get("sections")))for(var field:objects(section.get("fields"))){
             String key=field.get("key").toString();
             if(fields.putIfAbsent(key,field)!=null)throw new IllegalStateException("Trường mẫu hợp đồng bị trùng: "+key);
@@ -120,14 +117,11 @@ public class ContractTemplateData {
         effective.put("courseName",first(record,"registeredCourseName","courseName","enrollmentCourse"));
         effective.put("durationMonths",first(record,"registeredDurationMonths","durationMonths"));
         effective.put("startsOn",first(record,"startsOn"));effective.put("paymentDueOn",first(record,"paymentDueOn"));
-<<<<<<< Updated upstream
-=======
         if(record.get("classId")!=null&&Boolean.TRUE.equals(record.get("classPlanFixed"))){
             effective.put("startsOn",first(record,"classStartsOn","startsOn"));
             effective.put("endsOn",first(record,"classEndsOn"));
             effective.put("latestOpeningOn",first(record,"classStartsOn","startsOn"));
         }
->>>>>>> Stashed changes
         effective.put("tuitionDue",decimal(record.get("tuitionDue")));effective.put("depositDue",decimal(record.get("depositDue")));
         compute(effective);
         return effective;

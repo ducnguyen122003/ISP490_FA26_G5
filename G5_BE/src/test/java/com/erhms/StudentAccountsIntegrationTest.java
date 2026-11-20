@@ -88,11 +88,7 @@ class StudentAccountsIntegrationTest {
     }
     private String createContract(String admission)throws Exception {
         UUID course=UUID.randomUUID();jdbc.update("INSERT INTO training_courses(id,code,name,profession,duration_months,total_sessions,tuition_fee,objectives,status,manager_id,class_capacity) VALUES (?,?,?,?,3,20,1000,'Training','ACTIVE',?,20)",course,course.toString(),"Sửa chữa máy tính Laptop chuyên nghiệp","Nghề",manager.id);
-<<<<<<< Updated upstream
-        var input=Map.of("consultationId",admission,"courseId",course.toString(),"startsOn","2026-12-15","paymentDueOn","2026-12-14","tuitionDue",1000,"depositDue",0,"terms","Điều khoản đào tạo");
-=======
         var input=ClassPlanTestFixtures.withClass(jdbc,manager.id,Map.of("consultationId",admission,"courseId",course.toString(),"startsOn","2026-12-15","paymentDueOn","2026-12-14","tuitionDue",1000,"depositDue",0,"terms","Điều khoản đào tạo"));
->>>>>>> Stashed changes
         return body(mvc.perform(post("/api/workspace/screens/AddTrainingContract").with(user(manager.email).roles("MANAGER")).with(csrf()).contentType("application/json").content(json.writeValueAsString(input)))
                 .andExpect(status().isOk()).andReturn()).path("id").asText();
     }
@@ -112,10 +108,7 @@ class StudentAccountsIntegrationTest {
     }
 
     private ResultActions workspaceWrite(User actor,String screen,String id,Map<String,Object> values)throws Exception {
-<<<<<<< Updated upstream
-=======
         if(screen.equals("AddTrainingContract")||screen.equals("EditTrainingContract"))values=ClassPlanTestFixtures.withClass(jdbc,actor.id,values);
->>>>>>> Stashed changes
         return mvc.perform(post("/api/workspace/screens/"+screen+(id==null?"":"/"+id)).with(user(actor.email).roles(actor.getRoleCode())).with(csrf())
                 .contentType("application/json").content(json.writeValueAsString(values)));
     }
@@ -132,20 +125,11 @@ class StudentAccountsIntegrationTest {
     private Map<String,String> classForRegisteredProgram(String program)throws Exception {
         UUID course=UUID.randomUUID();
         jdbc.update("INSERT INTO training_courses(id,code,name,profession,duration_months,total_sessions,tuition_fee,objectives,status,manager_id,class_capacity) VALUES (?,?,?,'Điện',4,20,14200000,'Training fixture','ACTIVE',?,10)",course,course.toString(),program,manager.id);
-<<<<<<< Updated upstream
-        String classId=body(workspaceWrite(manager,"AddClass",null,Map.of("courseId",course.toString(),"name",unique+" Lớp học","capacity",10,"startsOn","2026-12-15","endsOn","2027-06-30"))
-                .andExpect(status().isOk()).andReturn()).path("id").asText();
-        return Map.of("courseId",course.toString(),"classId",classId);
-    }
-
-    @Test void registeredProgramContractCanCreateAnAccountReceivePaymentAndJoinItsMatchingClassWithoutAnInitialTrainingCourse()throws Exception {
-=======
         String classId=ClassPlanTestFixtures.withClass(jdbc,manager.id,Map.of("consultationId",UUID.randomUUID().toString(),"courseId",course.toString(),"startsOn","2026-12-15")).get("classId").toString();
         return Map.of("courseId",course.toString(),"classId",classId);
     }
 
     @Test void registeredProgramContractUsesItsPlannedClassThenRequiresAccountAndConfirmedPaymentBeforeEnrollment()throws Exception {
->>>>>>> Stashed changes
         String program="Sửa chữa máy tính Laptop chuyên nghiệp",email=unique+"-direct@student.test";
         String admission=admission("PROFILE_PENDING",email);
         jdbc.update("UPDATE consultation_registrations SET enrollment_course=? WHERE id=?",program,UUID.fromString(admission));
@@ -155,17 +139,10 @@ class StudentAccountsIntegrationTest {
                 .andExpect(status().isOk()).andReturn()).path("id").asText();
         UUID contractId=UUID.fromString(contract);
         var draft=workspaceView(manager,"TrainingContractDetail",contract).path("record");
-<<<<<<< Updated upstream
-        assertTrue(draft.path("courseId").isNull());assertTrue(draft.path("studentId").isNull());
-        assertEquals(program,draft.path("courseName").asText());assertEquals(4,draft.path("durationMonths").asInt());
-        assertEquals(14200000,draft.path("tuitionDue").asLong());assertEquals(manager.id.longValue(),draft.path("managerId").asLong());
-        assertEquals(0,jdbc.queryForObject("SELECT COUNT(*) FROM training_courses WHERE manager_id=?",Integer.class,manager.id));
-=======
         assertFalse(draft.path("courseId").isNull());assertFalse(draft.path("classId").isNull());assertTrue(draft.path("studentId").isNull());
         assertEquals(program,draft.path("courseName").asText());assertEquals(4,draft.path("durationMonths").asInt());
         assertEquals(14200000,draft.path("tuitionDue").asLong());assertEquals(manager.id.longValue(),draft.path("managerId").asLong());
         assertEquals(1,jdbc.queryForObject("SELECT COUNT(*) FROM training_courses WHERE manager_id=?",Integer.class,manager.id));
->>>>>>> Stashed changes
 
         create(manager,admission,Map.of("expectedEmail",email,"version",row(admission).path("version").asLong())).andExpect(status().isConflict());
         approveContractFixture(contract);
@@ -181,13 +158,8 @@ class StudentAccountsIntegrationTest {
         workspaceAction(accountant,"PaymentDetail",payment,"confirm",Map.of("version",0,"identityVerified",true,"amountVerified",true,"referenceVerified",true,"changeNote","Đã khớp chứng từ"))
                 .andExpect(status().isOk());
         var paid=workspaceView(manager,"TrainingContractDetail",contract).path("record");
-<<<<<<< Updated upstream
-        assertEquals("ACTIVE",paid.path("status").asText());assertTrue(paid.path("courseId").isNull());assertEquals(14200000,paid.path("tuitionPaid").asLong());
-        assertEquals(1,jdbc.queryForObject("SELECT COUNT(*) FROM user_notifications WHERE recipient_id=? AND target_screen='ListClass'",Integer.class,manager.id));
-=======
         assertEquals("ACTIVE",paid.path("status").asText());assertEquals(draft.path("courseId"),paid.path("courseId"));assertEquals(14200000,paid.path("tuitionPaid").asLong());
         assertEquals(1,jdbc.queryForObject("SELECT COUNT(*) FROM user_notifications WHERE recipient_id=? AND target_screen='ClassDetail' AND target_id=?",Integer.class,manager.id,paid.path("classId").asText()));
->>>>>>> Stashed changes
 
         var wrongClass=classForRegisteredProgram("Sửa chữa máy tính PC & máy in");
         var wrongCandidates=workspaceView(manager,"ClassDetail",wrongClass.get("classId")).path("related").path("unassignedStudents");
@@ -196,11 +168,7 @@ class StudentAccountsIntegrationTest {
                 .andExpect(status().isBadRequest()).andExpect(jsonPath("$.fields.students").exists());
         assertEquals(0,jdbc.queryForObject("SELECT COUNT(*) FROM training_enrollments WHERE contract_id=?",Integer.class,contractId));
 
-<<<<<<< Updated upstream
-        var matchingClass=classForRegisteredProgram(program);
-=======
         var matchingClass=Map.of("courseId",paid.path("courseId").asText(),"classId",paid.path("classId").asText());
->>>>>>> Stashed changes
         var candidates=workspaceView(manager,"ClassDetail",matchingClass.get("classId")).path("related").path("unassignedStudents");
         boolean listed=false;for(var candidate:candidates)if(candidate.path("id").asLong()==student)listed=true;assertTrue(listed);
         workspaceAction(manager,"ClassDetail",matchingClass.get("classId"),"add-students",Map.of("version",0,"students",List.of(Map.of("id",student))))
@@ -425,11 +393,8 @@ class StudentAccountsIntegrationTest {
         String email=unique+"@student.test",id=readyAdmission(" "+email.toUpperCase(Locale.ROOT)+" ");
         MvcResult result=create(id,email).andExpect(status().isOk()).andExpect(jsonPath("$.email").value(email)).andExpect(jsonPath("$.password").doesNotExist()).andExpect(jsonPath("$.passwordHash").doesNotExist()).andReturn();
         long accountId=body(result).path("accountId").asLong();User created=users.findWithRoleById(accountId).orElseThrow();
-<<<<<<< Updated upstream
-=======
         assertEquals(created.getStudentCode(),body(result).path("studentCode").asText());
         assertEquals(created.getStudentCode(),row(id).path("studentCode").asText());
->>>>>>> Stashed changes
         var secret=ArgumentCaptor.forClass(String.class);verify(mailer).requireConfigured();verify(mailer).sendCredentials(eq(email),eq(unique+" Học viên"),secret.capture());
         String password=secret.getValue();assertTrue(password.length()>=16);assertTrue(passwords.matches(password,created.passwordHash));assertNotEquals(password,created.passwordHash);
         assertEquals(3L,created.getRoleId());assertEquals("STUDENT",created.getRoleCode());assertEquals("0912345678",created.phone);assertTrue(created.accountEnabled);assertFalse(created.accountLocked);
@@ -440,22 +405,15 @@ class StudentAccountsIntegrationTest {
         MvcResult login=mvc.perform(post("/api/auth/login").with(csrf()).param("username",email).param("password",password)).andExpect(status().isNoContent()).andReturn();
         mvc.perform(get("/api/auth/me").session((MockHttpSession)login.getRequest().getSession(false))).andExpect(status().isOk()).andExpect(jsonPath("$.role").value("STUDENT"));
         mvc.perform(get("/api/workspace/screens/ListStudent").param("q",email).with(user(manager.email).roles("MANAGER"))).andExpect(status().isOk()).andExpect(jsonPath("$.total").value(1));
-<<<<<<< Updated upstream
-=======
         mvc.perform(get("/api/workspace/screens/ListStudent").param("q",created.getStudentCode()).with(user(manager.email).roles("MANAGER")))
                 .andExpect(status().isOk()).andExpect(jsonPath("$.total").value(1))
                 .andExpect(jsonPath("$.items[0].studentCode").value(created.getStudentCode()));
->>>>>>> Stashed changes
         assertEquals("STUDENT",row(id).path("accountStatus").asText());create(id,email).andExpect(status().isConflict());verify(mailer,times(1)).sendCredentials(anyString(),anyString(),anyString());
         JsonNode contractOptions=body(mvc.perform(get("/api/workspace/screens/AddTrainingContract").with(user(manager.email).roles("MANAGER"))).andExpect(status().isOk()).andReturn());
         assertFalse(contractOptions.path("options").has("students"));
         assertEquals(accountId,jdbc.queryForObject("SELECT student_id FROM training_contracts WHERE consultation_id=?",Long.class,UUID.fromString(id)));
         UUID course=UUID.randomUUID();jdbc.update("INSERT INTO training_courses(id,code,name,profession,duration_months,total_sessions,tuition_fee,objectives,status,manager_id,class_capacity) VALUES (?,?,?,?,3,20,1000,'Training','ACTIVE',?,20)",course,course.toString(),unique+" Course","Nghề",manager.id);
-<<<<<<< Updated upstream
-        var contract=Map.of("consultationId",id,"courseId",course.toString(),"studentId",accountId,"startsOn","2026-12-15","paymentDueOn","2026-12-14","tuitionDue",1000,"depositDue",0,"terms","Điều khoản đào tạo");
-=======
         var contract=ClassPlanTestFixtures.withClass(jdbc,manager.id,Map.of("consultationId",id,"courseId",course.toString(),"studentId",accountId,"startsOn","2026-12-15","paymentDueOn","2026-12-14","tuitionDue",1000,"depositDue",0,"terms","Điều khoản đào tạo"));
->>>>>>> Stashed changes
         mvc.perform(post("/api/workspace/screens/AddTrainingContract").with(user(manager.email).roles("MANAGER")).with(csrf()).contentType("application/json").content(json.writeValueAsString(contract))).andExpect(status().isOk());
         assertEquals(2,jdbc.queryForObject("SELECT COUNT(*) FROM training_contracts WHERE consultation_id=? AND student_id=? AND manager_id=?",Integer.class,UUID.fromString(id),accountId,manager.id));
     }

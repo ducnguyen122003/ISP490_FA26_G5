@@ -30,17 +30,10 @@ class ContractTemplateDataTest {
         var values=templates.values(record,hr);
         assertEquals("Nguyễn Anh Đức",values.get("studentName"));assertEquals("HD-MAU-2026",values.get("contractNumber"));
         assertEquals("Hà Nội",values.get("centerAddress"));assertEquals("12423453246134123",values.get("centerTaxCode"));
-<<<<<<< Updated upstream
-        assertEquals("999912082003",values.get("centerBankAccount"));assertEquals("Ducnahe176071@fpt.edu.vn",values.get("complaintContactAddress"));
-        assertEquals(new BigDecimal("14000000"),values.get("initialTotal"));assertEquals("Mười bốn triệu đồng",values.get("initialTotalInWords"));
-        for(String removed:List.of("otherChargesDue","module1Name","hasGuardian","grossTuition","studentReference"))assertFalse(values.containsKey(removed),removed);
-        assertEquals("BK-VTCOMS-2026-02",templates.metadata().get("version"));
-=======
         assertEquals("3419120803",values.get("centerBankAccount"));assertEquals("BIDV - PGD Hàm Yên",values.get("centerBankName"));assertEquals("Ducnahe176071@fpt.edu.vn",values.get("complaintContactAddress"));
         assertEquals(new BigDecimal("14000000"),values.get("initialTotal"));assertEquals("Mười bốn triệu đồng",values.get("initialTotalInWords"));
         for(String removed:List.of("otherChargesDue","module1Name","hasGuardian","grossTuition","studentReference"))assertFalse(values.containsKey(removed),removed);
         assertEquals("BK-VTCOMS-2026-03",templates.metadata().get("version"));
->>>>>>> Stashed changes
     }
 
     @Test void incompleteDraftsRemainValidButUnknownKeysAndInvalidActiveFieldsAreRejected(){
@@ -79,8 +72,4 @@ class ContractTemplateDataTest {
         assertEquals("Hai mươi mốt triệu chín trăm nghìn đồng",ContractTemplateData.amountInWords(new BigDecimal("21900000")));
         assertEquals("Một triệu không trăm linh năm đồng",ContractTemplateData.amountInWords(new BigDecimal("1000005")));
     }
-<<<<<<< Updated upstream
 }
-=======
-}
->>>>>>> Stashed changes
