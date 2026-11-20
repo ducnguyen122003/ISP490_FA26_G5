@@ -1,0 +1,83 @@
+{
+  "ListTrainingContract": {
+    "roles": [
+      "ACCOUNTANT",
+      "MANAGER"
+    ],
+    "actions": "Manager quản lý hợp đồng đào tạo; Kế toán xem hợp đồng đã bàn giao để đối chiếu.",
+    "scope": "Manager theo hợp đồng và khóa học được phân công; Kế toán theo hồ sơ đã bàn giao."
+  },
+  "AddTrainingContract": {
+    "roles": [
+      "MANAGER"
+    ],
+    "actions": "Manager lập hợp đồng từ hồ sơ đã nhận bằng email học viên, sau đó mới cấp tài khoản và gắn hợp đồng theo email.",
+    "scope": "Manager theo hợp đồng và khóa học được phân công; Kế toán theo hồ sơ đã bàn giao."
+  },
+  "EditTrainingContract": {
+    "roles": [
+      "MANAGER"
+    ],
+    "actions": "Manager sửa hợp đồng nháp trong phạm vi quản lý.",
+    "scope": "Manager theo hợp đồng và khóa học được phân công; Kế toán theo hồ sơ đã bàn giao."
+  },
+  "TrainingContractDetail": {
+    "roles": [
+      "ACCOUNTANT",
+      "MANAGER"
+    ],
+    "scope": "Manager theo hợp đồng và khóa học được phân công; Kế toán theo hồ sơ đã bàn giao."
+  },
+  "ContractSignature": {
+    "roles": [
+      "MANAGER"
+    ],
+    "actions": "Manager ghi nhận minh chứng ký và bàn giao cho Kế toán.",
+    "scope": "Manager theo hợp đồng và khóa học được phân công; Kế toán theo hồ sơ đã bàn giao."
+  },
+  "ListCourse": {
+    "roles": [
+      "ADMIN"
+    ],
+    "scope": "Chỉ quản trị viên được truy cập và quản lý danh mục khóa học toàn trung tâm.",
+    "actions": "Quản trị viên xem, tạo và cập nhật khóa học."
+  },
+  "AddCourse": {
+    "roles": [
+      "ADMIN"
+    ],
+    "scope": "Chỉ quản trị viên được truy cập và quản lý danh mục khóa học toàn trung tâm."
+  },
+  "EditCourse": {
+    "roles": [
+      "ADMIN"
+    ],
+    "scope": "Chỉ quản trị viên được truy cập và quản lý danh mục khóa học toàn trung tâm."
+  },
+  "CourseDetail": {
+    "roles": [
+      "ADMIN"
+    ],
+    "scope": "Chỉ quản trị viên được truy cập và quản lý danh mục khóa học toàn trung tâm."
+  },
+  "ListAdmissionApplicationDetail": {
+    "actions": [
+      [
+        "Ghi nhận tư vấn",
+        "AdmissionConsultation"
+      ]
+    ]
+  },
+  "AdmissionConsultation": {
+    "actions": "Lưu kết quả Cần tư vấn thêm, Hẹn nộp hồ sơ hoặc Không tiếp tục đăng ký.",
+    "description": "Ghi nhận nội dung tư vấn, ngày hẹn nộp hồ sơ hoặc lý do không tiếp tục theo kết quả đã chọn.",
+    "notes": [
+      "Ngày hẹn nộp hồ sơ hoặc lý do không tiếp tục là bắt buộc theo kết quả đã chọn.",
+      "Lưu lịch sử từng lần tư vấn; có thể ghi lịch liên hệ lại khi cần tư vấn thêm."
+    ]
+  },
+  "ListAdmissionApplication": {
+    "title": "Tư vấn & tiếp nhận hồ sơ",
+    "description": "Tư vấn người quan tâm khóa học, hẹn nộp và bổ sung các giấy tờ còn thiếu."
+  }
+}
