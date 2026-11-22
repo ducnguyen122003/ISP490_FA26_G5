@@ -1,5 +1,5 @@
 function greet(name) {
-  return `Hello Test, ${name}!`;
+  return `Hello Kitty, ${name}!`;
 }
 
 console.log(greet('BK-VTCMS'));
