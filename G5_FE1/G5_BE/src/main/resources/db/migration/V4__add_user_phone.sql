@@ -1,1 +1,0 @@
-ALTER TABLE m_user ADD COLUMN phone VARCHAR(20);
