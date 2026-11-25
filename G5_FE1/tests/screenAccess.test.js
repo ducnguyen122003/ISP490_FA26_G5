@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {canScreen,dashboardLink,screenNavigation,screenPath,screenRoute,screens} from '../src/screens/access.js';
-import {workspaceRoute} from '../src/roles.js';
+import {canScreen,dashboardLink,screenNavigation,screenPath,screenRoute,screens,screenTitle} from '../src/screens/access.js';
+import {firstAllowedPath,workspaceRoute} from '../src/roles.js';
 
 const roles=['ADMIN','LECTURER','STUDENT','ACCOUNTANT','IT_SUPPORT','MANAGER','HR'];
 const grants=role=>[...new Set(Object.values(screens).filter(s=>!s.public&&s.roles.includes(role)).map(s=>s.functionCode))];
@@ -17,18 +17,18 @@ test('only managers can open and discover student account provisioning, with an 
  assert.equal(screenRoute(path).screen.code,code);
  assert.notEqual(screens[code].fe,screens.ListStudent.fe);
 });
-test('all workbook, master data and extended workspace screens have implementations',()=>{
- assert.equal(Object.keys(screens).length,124);
+test('all enabled workspace and public screens have implementations',()=>{
+ assert.equal(Object.keys(screens).length,126);
  let business=0,pages=0;
  for(const screen of Object.values(screens)){
-  if(screen.code===screen.functionCode&&!screen.public){assert.ok(fs.existsSync(new URL('../src/screens/pages/'+screen.code+'.jsx',import.meta.url)));business++;}
+  if(screen.code===screen.functionCode&&!screen.public&&screen.roles.length>0){assert.ok(fs.existsSync(new URL('../src/screens/pages/'+screen.code+'.jsx',import.meta.url)),screen.code);business++;}
   else if(screen.public&&screen.fe==='FE-03'){assert.ok(fs.existsSync(new URL('../src/screens/public/'+screen.code+'.jsx',import.meta.url)));pages++;}
   else assert.ok(screenPath(screen.code).startsWith('/'));
  }
- assert.equal(business,96);assert.equal(pages,9);
+ assert.equal(business,85);assert.equal(pages,9);
 });
 test('screen access matches the current seven role totals including public and shared screens',()=>{
- const totals=[42,29,26,41,44,47,26];
+ const totals=[35,29,27,41,38,47,26];
  roles.forEach((role,index)=>{const user={role,roleId:index+1};assert.equal(Object.keys(screens).filter(code=>canScreen(code,user,grants(role))).length,totals[index],role);});
 });
 test('proposed rights and grants outside the declared role do not enable business screens',()=>{
@@ -40,7 +40,7 @@ test('proposed rights and grants outside the declared role do not enable busines
 test('class creation requires an Admin role and its own grant independently of class viewing',()=>{
  const path=screenPath('AddClass');
  assert.equal(path,'/screens/AddClass');
- assert.equal(screens.ListClass.action[1],'AddClass');
+ assert.equal(screens.CourseSchedules.roles.includes('ADMIN'),true);
  assert.equal(screenRoute(path).screen.code,'AddClass');
  for(const [index,role] of roles.entries()){
   const user={roleId:index+1,role};
@@ -50,9 +50,11 @@ test('class creation requires an Admin role and its own grant independently of c
 });
 
 test('managers can view class plans and calendars while only Admin can edit them',()=>{
- for(const code of ['ListClass','ClassDetail','TimeTable_Manager']){
+ for(const code of ['ClassDetail','TimeTable_Manager']){
   for(const role of ['ADMIN','MANAGER'])assert.equal(canScreen(code,{role},[code]),true);
  }
+ assert.equal(canScreen('ListClass',{role:'ADMIN'},['ListClass']),false);
+ assert.equal(canScreen('ListClass',{role:'MANAGER'},['ListClass']),true);
  for(const code of ['AddClass','EditClass','TimeTable_EditSession','TimeTable_Conflict']){
   assert.equal(canScreen(code,{role:'ADMIN'},[code]),true);
   assert.equal(canScreen(code,{role:'MANAGER'},[code]),false);
@@ -71,7 +73,37 @@ test('menu links only include granted role screens and never expose a student re
  roles.forEach((role,index)=>{const user={role,roleId:index+1};for(const item of screenNavigation(user,grants(role)))assert.equal(canScreen(item.code,user,grants(role)),true);});
  const student={roleId:3,role:'STUDENT'},codes=screenNavigation(student,grants('STUDENT')).map(item=>item.code);
  assert.ok(codes.includes('StudentAssets'));assert.ok(codes.includes('StudentResults'));assert.ok(!codes.includes('AddEquipmentRequest'));assert.ok(!codes.includes('RecordWithdrawal'));
+ assert.ok(!codes.includes('StudentAttendance'));
+ assert.deepEqual(screenNavigation(student,['StudentAttendance','StudentResults']).map(({label,path})=>[label,path]),[['Bảng điểm của tôi','/screens/StudentResults']]);
  assert.deepEqual(screenNavigation(student,[]),[]);
+});
+test('the grade entry menu belongs to lecturers with the gradebook grant',()=>{
+ const code='ClassGradebook',path=screenPath(code),lecturer={role:'LECTURER',roleId:2},manager={role:'MANAGER',roleId:6};
+ assert.deepEqual(screenNavigation(lecturer,[code]).map(({label,path})=>({label,path})),[{label:'Nhập điểm',path}]);
+ assert.equal(dashboardLink(lecturer,{taskKey:'grades'},[code]),path);
+ assert.equal(screenTitle(code,manager),'Bảng điểm lớp học');
+ assert.equal(workspaceRoute(path,lecturer,[]),'forbidden');
+ for(const role of roles.filter(role=>role!=='LECTURER'))assert.deepEqual(screenNavigation({role},[code]),[]);
+});
+test('every role can open notifications without a sidebar entry, including accounts with only the notification grant',()=>{
+ const path=screenPath('ListNotification');
+ for(const [index,role] of roles.entries()){
+  const user={role,roleId:index+1};
+  assert.ok(!screenNavigation(user,grants(role)).some(item=>item.code==='ListNotification'),role);
+  assert.equal(firstAllowedPath(user,['ListNotification']),path,role);
+  assert.equal(workspaceRoute(path,user,['ListNotification']),'screen',role);
+  assert.equal(workspaceRoute(path,user,[]),'forbidden',role);
+ }
+});
+test('retake offers are limited to learners with a grant and stay out of the sidebar',()=>{
+ const code='StudentRetake',id='b1204aa1-2e67-4ec9-a705-6e686890a8a2',path=screenPath(code,id);
+ assert.equal(screenRoute(path).id,id);
+ roles.forEach((role,index)=>{
+  const user={role,roleId:index+1};
+  assert.equal(workspaceRoute(path,user,[code]),role==='STUDENT'?'screen':'forbidden');
+  assert.equal(workspaceRoute(path,user,[]),'forbidden');
+  assert.ok(!screenNavigation(user,[code]).some(item=>item.code===code));
+ });
 });
 test('legacy account and dashboard paths keep their existing contracts',()=>{
  assert.equal(screenPath('EditUser',42),'/admin/users/42/edit');assert.equal(screenPath('EditUser'),'/admin/users/new');assert.equal(screenPath('UserProfile_AdminView',42),'/admin/users/42/view');
@@ -88,7 +120,7 @@ test('dashboard records and tasks lead to the appropriate role screen and respec
 });
 
 test('master data screens have distinct components and strict role permissions',()=>{
- const groups=[['EquipmentGroup','IT_SUPPORT'],['StorageLocation','IT_SUPPORT'],['Profession','ADMIN'],['Classroom','ADMIN']];
+ const groups=[['Classroom','ADMIN']];
  for(const [suffix,role] of groups){
   for(const mode of ['List','Add','Edit']){
    const code=mode+suffix;assert.equal(screens[code].functionCode,code);
@@ -98,11 +130,11 @@ test('master data screens have distinct components and strict role permissions',
   assert.ok(screenNavigation({role},grants(role)).some(item=>item.code==='List'+suffix));
  }
 });
-test('profession and course management is exclusive to admin even with stale grants',()=>{
- const codes=['ListProfession','AddProfession','EditProfession','ListCourse','AddCourse','EditCourse','CourseDetail'];
+test('retired catalog and course editors stay blocked for all roles even with stale grants',()=>{
+ const codes=['ListProfession','AddProfession','EditProfession','ListCourse','AddCourse','EditCourse','CourseDetail','ListEquipmentGroup','AddEquipmentGroup','EditEquipmentGroup','ListStorageLocation','AddStorageLocation','EditStorageLocation'];
  for(const code of codes){
-  const path=screenPath(code,['EditProfession','EditCourse','CourseDetail'].includes(code)?42:null);
-  assert.equal(workspaceRoute(path,{roleId:1,role:'ADMIN'},codes),'screen',code);
+  const path=screenPath(code,code.startsWith('Edit')||code==='CourseDetail'?42:null);
+  assert.equal(workspaceRoute(path,{roleId:1,role:'ADMIN'},codes),'forbidden',code);
   assert.equal(workspaceRoute(path,{roleId:1,role:'ADMIN'},[]),'forbidden',code);
   for(const [index,role] of roles.entries())if(role!=='ADMIN'){
    assert.equal(canScreen(code,{role},codes),false,role+': '+code);
@@ -111,7 +143,7 @@ test('profession and course management is exclusive to admin even with stale gra
  }
  for(const role of roles){
   const menu=screenNavigation({role},codes).map(item=>item.code);
-  for(const code of ['ListProfession','ListCourse'])assert.equal(menu.includes(code),role==='ADMIN',role+': '+code);
+  for(const code of ['ListProfession','ListCourse','ListEquipmentGroup','ListStorageLocation'])assert.equal(menu.includes(code),false,role+': '+code);
  }
  assert.equal(canScreen('PublicCourseDetail',null,[]),true);
 });

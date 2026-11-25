@@ -1329,9 +1329,7 @@
     "code": "ListCourse",
     "fe": "FE-08",
     "title": "Danh mục khóa học",
-    "roles": [
-      "ADMIN"
-    ],
+    "roles": [],
     "proposedRoles": [],
     "public": false,
     "scope": "Chỉ quản trị viên được truy cập và quản lý danh mục khóa học toàn trung tâm.",
@@ -1363,9 +1361,7 @@
     "code": "AddCourse",
     "fe": "FE-08",
     "title": "Thêm khóa học",
-    "roles": [
-      "ADMIN"
-    ],
+    "roles": [],
     "proposedRoles": [],
     "public": false,
     "scope": "Chỉ quản trị viên được truy cập và quản lý danh mục khóa học toàn trung tâm.",
@@ -1429,9 +1425,7 @@
     "code": "EditCourse",
     "fe": "FE-08",
     "title": "Chỉnh sửa khóa học",
-    "roles": [
-      "ADMIN"
-    ],
+    "roles": [],
     "proposedRoles": [],
     "public": false,
     "scope": "Chỉ quản trị viên được truy cập và quản lý danh mục khóa học toàn trung tâm.",
@@ -1495,9 +1489,7 @@
     "code": "CourseDetail",
     "fe": "FE-08",
     "title": "Chi tiết khóa học",
-    "roles": [
-      "ADMIN"
-    ],
+    "roles": [],
     "proposedRoles": [],
     "public": false,
     "scope": "Chỉ quản trị viên được truy cập và quản lý danh mục khóa học toàn trung tâm.",
@@ -1529,17 +1521,16 @@
     "fe": "FE-09",
     "title": "Lớp học & giảng viên",
     "roles": [
-      "ADMIN",
       "MANAGER"
     ],
     "proposedRoles": [],
     "public": false,
-    "scope": "Học viên, khóa / lớp, lịch, xếp lớp và hồ sơ hoàn tất được phân công quản lý.",
-    "actions": "Admin lập kế hoạch lớp theo từng năm. Quản lý học viên xem lớp thuộc phạm vi phụ trách và xếp học viên đã đủ học phí.",
+    "scope": "Kế hoạch lớp dùng chung của trung tâm; hồ sơ học viên được quản lý theo phân công riêng.",
+    "actions": "Admin lập kế hoạch lớp theo từng năm. Quản lý học viên theo dõi danh sách đã xếp và xử lý hồ sơ chưa được xếp tự động.",
     "variant": "Màn hình chính",
     "kind": "list",
     "functionCode": "ListClass",
-    "description": "Kế hoạch lớp theo năm, giảng viên và lịch học cố định. Quản lý học viên xếp học viên theo lớp đã chọn trên hợp đồng.",
+    "description": "Xem lớp, giảng viên và lịch học theo năm. Khi kế toán xác nhận đủ học phí, học viên được xếp vào lớp ghi trên hợp đồng.",
     "headers": [
       "LỚP / KHÓA",
       "GIẢNG VIÊN",
@@ -1569,7 +1560,7 @@
     ],
     "proposedRoles": [],
     "public": false,
-    "scope": "Học viên, khóa / lớp, lịch, xếp lớp và hồ sơ hoàn tất được phân công quản lý.",
+    "scope": "Kế hoạch lớp dùng chung của trung tâm; hồ sơ học viên được quản lý theo phân công riêng.",
     "actions": [
       [
         "Điều chỉnh lớp",
@@ -1621,7 +1612,7 @@
     ],
     "proposedRoles": [],
     "public": false,
-    "scope": "Học viên, khóa / lớp, lịch, xếp lớp và hồ sơ hoàn tất được phân công quản lý.",
+    "scope": "Admin điều chỉnh kế hoạch lớp dùng chung của trung tâm.",
     "actions": "Admin điều chỉnh sĩ số, giảng viên và trạng thái; lịch kế hoạch đã cố định được giữ nguyên.",
     "variant": "Màn hình chính",
     "kind": "form",
@@ -1684,7 +1675,7 @@
     "proposedRoles": [],
     "public": false,
     "scope": "Học viên, khóa / lớp, lịch, xếp lớp và hồ sơ hoàn tất được phân công quản lý.",
-    "actions": "Quản lý học viên thêm người đã đóng đủ học phí vào lớp và kiểm tra kết quả phân công. Kế toán xác nhận thanh toán theo hợp đồng.",
+    "actions": "Quản lý học viên kiểm tra kết quả xếp lớp sau khi kế toán xác nhận đủ học phí theo hợp đồng.",
     "variant": "Tab kết quả xếp lớp trong FE-09",
     "kind": "list",
     "functionCode": "AutoAssignmentReview",
@@ -1745,12 +1736,12 @@
     ],
     "proposedRoles": [],
     "public": false,
-    "scope": "Học viên, khóa / lớp, lịch, xếp lớp và hồ sơ hoàn tất được phân công quản lý.",
-    "actions": "Admin xem lịch trung tâm. Quản lý học viên xem lịch cố định thuộc phạm vi phụ trách.",
+    "scope": "Lịch học cố định dùng chung của trung tâm.",
+    "actions": "Admin và các quản lý học viên xem lịch học cố định dùng chung của trung tâm.",
     "variant": "Biến thể theo vai trò của TimeTable",
     "kind": "timetable",
     "functionCode": "TimeTable_Manager",
-    "description": "Theo dõi và xử lý dữ liệu mới nhất trong phạm vi được phân công.",
+    "description": "Theo dõi lịch học cố định của các lớp trong trung tâm.",
     "sections": []
   },
   {
@@ -2012,7 +2003,7 @@
   {
     "code": "StudentResults",
     "fe": "FE-12",
-    "title": "Kết quả học tập của tôi",
+    "title": "Bảng điểm của tôi",
     "roles": [
       "STUDENT"
     ],
@@ -2024,6 +2015,20 @@
     "kind": "results",
     "functionCode": "StudentResults",
     "description": "Các đầu điểm đã được giảng viên công bố.",
+    "sections": []
+  },
+  {
+    "code": "StudentRetake",
+    "fe": "FE-12",
+    "title": "Đăng ký học lại",
+    "roles": ["STUDENT"],
+    "proposedRoles": [],
+    "public": false,
+    "scope": "Lời mời học lại dành cho tài khoản học viên đang đăng nhập.",
+    "actions": "Chọn lớp, đồng ý điều khoản hợp đồng học lại và chuyển đến phần nộp tiền.",
+    "kind": "detail",
+    "functionCode": "StudentRetake",
+    "description": "Chọn lớp khác cùng khóa với học phí bằng 70% mức gốc.",
     "sections": []
   },
   {
@@ -2094,10 +2099,6 @@
           },
           {
             "label": "Học viên nhận *",
-            "type": "select"
-          },
-          {
-            "label": "Nhóm thiết bị *",
             "type": "select"
           },
           {
@@ -2378,7 +2379,7 @@
     "proposedRoles": [],
     "public": false,
     "scope": "Hợp đồng, giao dịch, học phí, cọc và hồ sơ bồi thường / quyết toán theo phân công.",
-    "actions": "Chỉ Kế toán đối soát và xác nhận thu theo hợp đồng. Khi học phí được xác nhận đủ, học viên xuất hiện trong danh sách chờ để Quản lý học viên thêm vào lớp cùng khóa học.",
+    "actions": "Kế toán đối soát và xác nhận khoản thu. Khi học phí được xác nhận đủ, học viên được xếp vào lớp ghi trên hợp đồng.",
     "variant": "Màn hình chính",
     "kind": "payment",
     "functionCode": "PaymentDetail",
@@ -2485,7 +2486,7 @@
     "variant": "Thao tác hoàn cọc / khấu trừ được duyệt trong FE-15",
     "kind": "refund",
     "functionCode": "DepositRefund",
-    "description": "Kiểm tra kết quả thu hồi và khoản bồi thường được phê duyệt.",
+    "description": "Đối chiếu phiếu hoàn cọc của IT và ghi nhận quyết toán.",
     "back": "DepositList",
     "sections": []
   },
@@ -2506,7 +2507,6 @@
     "description": "Quản lý từng tài sản và trạng thái sẵn sàng cấp phát.",
     "headers": [
       "THIẾT BỊ / MÃ",
-      "NHÓM THIẾT BỊ",
       "NGƯỜI ĐANG GIỮ",
       "TRẠNG THÁI",
       "THAO TÁC"
@@ -2518,7 +2518,6 @@
     "target": "AssetDetail",
     "edit": "EditAsset",
     "filter": [
-      "Tất cả nhóm thiết bị",
       "Tất cả trạng thái"
     ],
     "sections": []
@@ -2537,7 +2536,7 @@
     "variant": "Màn hình chính",
     "kind": "form",
     "functionCode": "AddAsset",
-    "description": "Tạo mã riêng để theo dõi cấp phát và lịch sử sử dụng.",
+    "description": "Thêm nhiều thiết bị cùng thông tin với mã tăng dần và tiền tố giữ nguyên.",
     "notes": [
       "Mỗi thiết bị có mã tài sản và lịch sử riêng.",
       "Chỉ cấp phát khi thiết bị ở trạng thái sẵn sàng."
@@ -2557,10 +2556,6 @@
             "type": "text"
           },
           {
-            "label": "Nhóm thiết bị *",
-            "type": "select"
-          },
-          {
             "label": "Ngày nhập *",
             "type": "text"
           },
@@ -2571,15 +2566,11 @@
         ]
       },
       {
-        "title": "Hiện trạng & lưu kho",
+        "title": "Hiện trạng & phụ kiện",
         "fields": [
           {
             "label": "Tình trạng *",
             "type": "select"
-          },
-          {
-            "label": "Vị trí lưu kho *",
-            "type": "text"
           },
           {
             "label": "Phụ kiện đi kèm",
@@ -2623,10 +2614,6 @@
             "type": "text"
           },
           {
-            "label": "Nhóm thiết bị *",
-            "type": "select"
-          },
-          {
             "label": "Ngày nhập *",
             "type": "text"
           },
@@ -2637,15 +2624,11 @@
         ]
       },
       {
-        "title": "Hiện trạng & lưu kho",
+        "title": "Hiện trạng & phụ kiện",
         "fields": [
           {
             "label": "Tình trạng *",
             "type": "select"
-          },
-          {
-            "label": "Vị trí lưu kho *",
-            "type": "text"
           },
           {
             "label": "Phụ kiện đi kèm",
@@ -2880,7 +2863,7 @@
     "variant": "Màn hình chính",
     "kind": "recovery",
     "functionCode": "ListAssetDetail",
-    "description": "Theo dõi và xử lý dữ liệu mới nhất trong phạm vi được phân công.",
+    "description": "Kiểm tra thiết bị đã trả và lập phiếu đề nghị hoàn cọc gửi kế toán.",
     "back": "ListAssetRecovery",
     "sections": []
   },
@@ -3358,9 +3341,7 @@
     "title": "Nhóm thiết bị",
     "kind": "master_list",
     "functionCode": "ListEquipmentGroup",
-    "roles": [
-      "IT_SUPPORT"
-    ],
+    "roles": [],
     "public": false,
     "description": "Quản lý danh mục nhóm thiết bị dùng chung.",
     "masterType": "equipmentGroups",
@@ -3373,9 +3354,7 @@
     "title": "Tạo nhóm thiết bị",
     "kind": "master_add",
     "functionCode": "AddEquipmentGroup",
-    "roles": [
-      "IT_SUPPORT"
-    ],
+    "roles": [],
     "public": false,
     "description": "Quản lý danh mục nhóm thiết bị dùng chung.",
     "masterType": "equipmentGroups",
@@ -3388,9 +3367,7 @@
     "title": "Cập nhật nhóm thiết bị",
     "kind": "master_edit",
     "functionCode": "EditEquipmentGroup",
-    "roles": [
-      "IT_SUPPORT"
-    ],
+    "roles": [],
     "public": false,
     "description": "Quản lý danh mục nhóm thiết bị dùng chung.",
     "masterType": "equipmentGroups",
@@ -3403,9 +3380,7 @@
     "title": "Vị trí kho",
     "kind": "master_list",
     "functionCode": "ListStorageLocation",
-    "roles": [
-      "IT_SUPPORT"
-    ],
+    "roles": [],
     "public": false,
     "description": "Quản lý danh mục vị trí kho dùng chung.",
     "masterType": "storageLocations",
@@ -3418,9 +3393,7 @@
     "title": "Tạo vị trí kho",
     "kind": "master_add",
     "functionCode": "AddStorageLocation",
-    "roles": [
-      "IT_SUPPORT"
-    ],
+    "roles": [],
     "public": false,
     "description": "Quản lý danh mục vị trí kho dùng chung.",
     "masterType": "storageLocations",
@@ -3433,9 +3406,7 @@
     "title": "Cập nhật vị trí kho",
     "kind": "master_edit",
     "functionCode": "EditStorageLocation",
-    "roles": [
-      "IT_SUPPORT"
-    ],
+    "roles": [],
     "public": false,
     "description": "Quản lý danh mục vị trí kho dùng chung.",
     "masterType": "storageLocations",
@@ -3448,9 +3419,7 @@
     "title": "Ngành nghề",
     "kind": "master_list",
     "functionCode": "ListProfession",
-    "roles": [
-      "ADMIN"
-    ],
+    "roles": [],
     "public": false,
     "description": "Quản lý danh mục ngành nghề dùng chung.",
     "masterType": "professions",
@@ -3463,9 +3432,7 @@
     "title": "Tạo ngành nghề",
     "kind": "master_add",
     "functionCode": "AddProfession",
-    "roles": [
-      "ADMIN"
-    ],
+    "roles": [],
     "public": false,
     "description": "Quản lý danh mục ngành nghề dùng chung.",
     "masterType": "professions",
@@ -3478,9 +3445,7 @@
     "title": "Cập nhật ngành nghề",
     "kind": "master_edit",
     "functionCode": "EditProfession",
-    "roles": [
-      "ADMIN"
-    ],
+    "roles": [],
     "public": false,
     "description": "Quản lý danh mục ngành nghề dùng chung.",
     "masterType": "professions",
@@ -3558,6 +3523,29 @@
     "functionCode": "AdmissionContractSigning",
     "scope": "Chỉ hợp đồng được QLHV giao cho nhân viên tuyển sinh hiện tại.",
     "description": "In hợp đồng, lấy chữ ký học viên và gửi bản scan cho QLHV xác nhận.",
+    "sections": []
+  },
+  {
+    "code": "CourseSchedules",
+    "fe": "FE-09",
+    "title": "Cấu hình lịch học theo khóa",
+    "roles": [
+      "ADMIN"
+    ],
+    "proposedRoles": [],
+    "public": false,
+    "scope": "Bốn khóa đào tạo cố định và kế hoạch lịch học riêng từng năm của trung tâm.",
+    "actions": "Admin chọn khóa, năm kế hoạch, giảng viên và phòng học để lập lịch lớp cố định dùng chung cho các quản lý học viên.",
+    "variant": "Màn hình chính",
+    "kind": "course_schedules",
+    "functionCode": "CourseSchedules",
+    "description": "Chọn một trong bốn khóa đào tạo để cấu hình lịch học theo từng năm.",
+    "action": [
+      "Thêm kế hoạch lớp",
+      "AddClass"
+    ],
+    "target": "ClassDetail",
+    "edit": "EditClass",
     "sections": []
   }
 ]
