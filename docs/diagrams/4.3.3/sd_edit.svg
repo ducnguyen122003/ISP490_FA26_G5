@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2318" height="1462" viewBox="0 0 2318 1462" font-family="Arial, Helvetica, sans-serif"><rect width="100%" height="100%" fill="white"/>
+<rect x="58" y="896" width="2201.6000000000004" height="490" fill="none" stroke="#333"/>
+<polygon points="58,896 96,896 96,908 90,914 58,914" fill="white" stroke="#333"/>
+<text x="62" y="909" font-size="12" font-weight="bold">alt</text>
+<line x1="58" y1="1086" x2="2259.6000000000004" y2="1086" stroke="#333" stroke-dasharray="6,4"/>
+<rect x="50" y="556" width="2217.6000000000004" height="850" fill="none" stroke="#333"/>
+<polygon points="50,556 88,556 88,568 82,574 50,574" fill="white" stroke="#333"/>
+<text x="54" y="569" font-size="12" font-weight="bold">alt</text>
+<line x1="50" y1="746" x2="2267.6000000000004" y2="746" stroke="#333" stroke-dasharray="6,4"/>
+<line x1="120" y1="110" x2="120" y2="1442" stroke="#333" stroke-dasharray="6,5"/>
+<line x1="479.28000000000003" y1="110" x2="479.28000000000003" y2="1442" stroke="#333" stroke-dasharray="6,5"/>
+<line x1="946.0800000000002" y1="110" x2="946.0800000000002" y2="1442" stroke="#333" stroke-dasharray="6,5"/>
+<line x1="1221.2800000000002" y1="110" x2="1221.2800000000002" y2="1442" stroke="#333" stroke-dasharray="6,5"/>
+<line x1="1520.0800000000002" y1="110" x2="1520.0800000000002" y2="1442" stroke="#333" stroke-dasharray="6,5"/>
+<line x1="1696.0800000000002" y1="110" x2="1696.0800000000002" y2="1442" stroke="#333" stroke-dasharray="6,5"/>
+<line x1="1872.0800000000002" y1="110" x2="1872.0800000000002" y2="1442" stroke="#333" stroke-dasharray="6,5"/>
+<line x1="2177.6000000000004" y1="110" x2="2177.6000000000004" y2="1442" stroke="#333" stroke-dasharray="6,5"/>
+<rect x="115" y="142" width="10" height="1212" fill="#82D3F5" stroke="#1F4E6B"/>
+<rect x="474.28000000000003" y="142" width="10" height="1212" fill="#82D3F5" stroke="#1F4E6B"/>
+<rect x="941.0800000000002" y="180" width="10" height="1136" fill="#82D3F5" stroke="#1F4E6B"/>
+<rect x="1216.2800000000002" y="266" width="10" height="1012" fill="#82D3F5" stroke="#1F4E6B"/>
+<rect x="1515.0800000000002" y="352" width="10" height="18" fill="#82D3F5" stroke="#1F4E6B"/>
+<rect x="1691.0800000000002" y="390" width="10" height="18" fill="#82D3F5" stroke="#1F4E6B"/>
+<rect x="1867.0800000000002" y="428" width="10" height="812" fill="#82D3F5" stroke="#1F4E6B"/>
+<rect x="2172.6000000000004" y="466" width="10" height="736" fill="#82D3F5" stroke="#1F4E6B"/>
+<circle cx="120" cy="50" r="7" fill="#82D3F5" stroke="#333"/>
+<line x1="120" y1="57" x2="120" y2="75" stroke="#333"/><line x1="109" y1="63" x2="131" y2="63" stroke="#333"/>
+<line x1="120" y1="75" x2="111" y2="87" stroke="#333"/><line x1="120" y1="75" x2="129" y2="87" stroke="#333"/>
+<text x="120" y="102" font-size="12" text-anchor="middle">Admissions &amp; Training</text>
+<text x="120" y="115" font-size="12" text-anchor="middle">Management</text>
+<line x1="453.28000000000003" y1="50" x2="453.28000000000003" y2="74" stroke="#333"/><line x1="453.28000000000003" y1="62" x2="467.28000000000003" y2="62" stroke="#333"/>
+<circle cx="483.28000000000003" cy="62" r="16" fill="#82D3F5" stroke="#333"/>
+<text x="479.28000000000003" y="94" font-size="12" text-anchor="middle">:EditCoursePage</text>
+<circle cx="946.0800000000002" cy="62" r="16" fill="#82D3F5" stroke="#333"/>
+<polyline points="948.0800000000002,40 941.0800000000002,46 949.0800000000002,51" fill="none" stroke="#333"/>
+<text x="946.0800000000002" y="94" font-size="12" text-anchor="middle">:WorkspaceController</text>
+<rect x="1154.1600000000003" y="44" width="134.24" height="40" fill="#82D3F5" stroke="#1F4E6B"/>
+<text x="1221.2800000000002" y="58" font-size="11" text-anchor="middle">&lt;&lt;service&gt;&gt;</text>
+<text x="1221.2800000000002" y="73" font-size="12" text-anchor="middle">:WorkspaceService</text>
+<rect x="1463.0400000000002" y="44" width="114.08000000000001" height="40" fill="#82D3F5" stroke="#1F4E6B"/>
+<text x="1520.0800000000002" y="58" font-size="11" text-anchor="middle">&lt;&lt;component&gt;&gt;</text>
+<text x="1520.0800000000002" y="73" font-size="12" text-anchor="middle">:ScreenCatalog</text>
+<rect x="1602.0800000000002" y="44" width="188.00000000000003" height="40" fill="#82D3F5" stroke="#1F4E6B"/>
+<text x="1696.0800000000002" y="58" font-size="11" text-anchor="middle">&lt;&lt;service&gt;&gt;</text>
+<text x="1696.0800000000002" y="73" font-size="12" text-anchor="middle">:ScreenPermissionsService</text>
+<rect x="1818.4" y="44" width="107.36000000000001" height="40" fill="#82D3F5" stroke="#1F4E6B"/>
+<text x="1872.0800000000002" y="58" font-size="11" text-anchor="middle">&lt;&lt;repository&gt;&gt;</text>
+<text x="1872.0800000000002" y="73" font-size="12" text-anchor="middle">:WorkflowData</text>
+<rect x="2130.6400000000003" y="44" width="93.92" height="40" fill="#82D3F5" stroke="#1F4E6B"/>
+<text x="2177.6000000000004" y="58" font-size="11" text-anchor="middle">&lt;&lt;database&gt;&gt;</text>
+<text x="2177.6000000000004" y="73" font-size="12" text-anchor="middle">:PostgreSQL</text>
+<line x1="125" y1="150" x2="474.28000000000003" y2="150" stroke="#222"/>
+<polygon points="464.28000000000003,145 474.28000000000003,150 464.28000000000003,155" fill="#222"/>
+<text x="299.64" y="144" font-size="12" text-anchor="middle">1. Change course fields and click &quot;Lưu thay đổi&quot;</text>
+<line x1="484.28000000000003" y1="188" x2="941.0800000000002" y2="188" stroke="#222"/>
+<polygon points="931.0800000000002,183 941.0800000000002,188 931.0800000000002,193" fill="#222"/>
+<text x="712.6800000000001" y="182" font-size="12" text-anchor="middle">2. POST /api/workspace/screens/EditCourse/{id} {fields, version}</text>
+<polyline points="951.0800000000002,226 981.0800000000002,226 981.0800000000002,248 953.0800000000002,248" fill="none" stroke="#222"/>
+<polygon points="962.0800000000002,243 952.0800000000002,248 962.0800000000002,253" fill="#222"/>
+<text x="987.0800000000002" y="230" font-size="12">3. audit(request, code, id, input)</text>
+<line x1="951.0800000000002" y1="274" x2="1216.2800000000002" y2="274" stroke="#222"/>
+<polygon points="1206.2800000000002,269 1216.2800000000002,274 1206.2800000000002,279" fill="#222"/>
+<text x="1083.6800000000003" y="268" font-size="12" text-anchor="middle">4. save(&quot;EditCourse&quot;, id, input)</text>
+<polyline points="1226.2800000000002,312 1256.2800000000002,312 1256.2800000000002,334 1228.2800000000002,334" fill="none" stroke="#222"/>
+<polygon points="1237.2800000000002,329 1227.2800000000002,334 1237.2800000000002,339" fill="#222"/>
+<text x="1262.2800000000002" y="316" font-size="12">5. access(code)</text>
+<line x1="1226.2800000000002" y1="360" x2="1515.0800000000002" y2="360" stroke="#222"/>
+<polygon points="1505.0800000000002,355 1515.0800000000002,360 1505.0800000000002,365" fill="#222"/>
+<text x="1370.6800000000003" y="354" font-size="12" text-anchor="middle">6. get(code), requireRole(screen, role)</text>
+<line x1="1226.2800000000002" y1="398" x2="1691.0800000000002" y2="398" stroke="#222"/>
+<polygon points="1681.0800000000002,393 1691.0800000000002,398 1681.0800000000002,403" fill="#222"/>
+<text x="1458.6800000000003" y="392" font-size="12" text-anchor="middle">7. require(&quot;EditCourse&quot;)</text>
+<line x1="1226.2800000000002" y1="436" x2="1867.0800000000002" y2="436" stroke="#222"/>
+<polygon points="1857.0800000000002,431 1867.0800000000002,436 1857.0800000000002,441" fill="#222"/>
+<text x="1546.6800000000003" y="430" font-size="12" text-anchor="middle">8. record(&quot;courses&quot;, id, user)</text>
+<line x1="1877.0800000000002" y1="474" x2="2172.6000000000004" y2="474" stroke="#222"/>
+<polygon points="2162.6000000000004,469 2172.6000000000004,474 2162.6000000000004,479" fill="#222"/>
+<text x="2024.8400000000001" y="468" font-size="12" text-anchor="middle">9. SELECT scoped course WHERE id = ?</text>
+<line x1="2172.6000000000004" y1="512" x2="1877.0800000000002" y2="512" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="1886.0800000000002,507 1877.0800000000002,512 1886.0800000000002,517" fill="none" stroke="#222"/>
+<text x="2024.8400000000001" y="506" font-size="12" text-anchor="middle">10. course / no row</text>
+<line x1="1867.0800000000002" y1="590" x2="1226.2800000000002" y2="590" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="1235.2800000000002,585 1226.2800000000002,590 1235.2800000000002,595" fill="none" stroke="#222"/>
+<text x="1546.6800000000003" y="584" font-size="12" text-anchor="middle">11. NOT_FOUND</text>
+<line x1="1216.2800000000002" y1="628" x2="951.0800000000002" y2="628" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="960.0800000000002,623 951.0800000000002,628 960.0800000000002,633" fill="none" stroke="#222"/>
+<text x="1083.6800000000003" y="622" font-size="12" text-anchor="middle">12. WorkflowException 404</text>
+<line x1="941.0800000000002" y1="666" x2="484.28000000000003" y2="666" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="493.28000000000003,661 484.28000000000003,666 493.28000000000003,671" fill="none" stroke="#222"/>
+<text x="712.6800000000001" y="660" font-size="12" text-anchor="middle">13. HTTP 404</text>
+<line x1="474.28000000000003" y1="704" x2="125" y2="704" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="134,699 125,704 134,709" fill="none" stroke="#222"/>
+<text x="299.64" y="698" font-size="12" text-anchor="middle">14. Show not found message</text>
+<line x1="1226.2800000000002" y1="776" x2="1867.0800000000002" y2="776" stroke="#222"/>
+<polygon points="1857.0800000000002,771 1867.0800000000002,776 1857.0800000000002,781" fill="#222"/>
+<text x="1546.6800000000003" y="770" font-size="12" text-anchor="middle">15. lock(&quot;training_courses&quot;, id, input)</text>
+<line x1="1877.0800000000002" y1="814" x2="2172.6000000000004" y2="814" stroke="#222"/>
+<polygon points="2162.6000000000004,809 2172.6000000000004,814 2162.6000000000004,819" fill="#222"/>
+<text x="2024.8400000000001" y="808" font-size="12" text-anchor="middle">16. SELECT version ... FOR UPDATE</text>
+<line x1="2172.6000000000004" y1="852" x2="1877.0800000000002" y2="852" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="1886.0800000000002,847 1877.0800000000002,852 1886.0800000000002,857" fill="none" stroke="#222"/>
+<text x="2024.8400000000001" y="846" font-size="12" text-anchor="middle">17. version</text>
+<line x1="1867.0800000000002" y1="930" x2="1226.2800000000002" y2="930" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="1235.2800000000002,925 1226.2800000000002,930 1235.2800000000002,935" fill="none" stroke="#222"/>
+<text x="1546.6800000000003" y="924" font-size="12" text-anchor="middle">18. CONFLICT</text>
+<line x1="1216.2800000000002" y1="968" x2="951.0800000000002" y2="968" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="960.0800000000002,963 951.0800000000002,968 960.0800000000002,973" fill="none" stroke="#222"/>
+<text x="1083.6800000000003" y="962" font-size="12" text-anchor="middle">19. WorkflowException 409</text>
+<line x1="941.0800000000002" y1="1006" x2="484.28000000000003" y2="1006" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="493.28000000000003,1001 484.28000000000003,1006 493.28000000000003,1011" fill="none" stroke="#222"/>
+<text x="712.6800000000001" y="1000" font-size="12" text-anchor="middle">20. HTTP 409</text>
+<line x1="474.28000000000003" y1="1044" x2="125" y2="1044" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="134,1039 125,1044 134,1049" fill="none" stroke="#222"/>
+<text x="299.64" y="1038" font-size="12" text-anchor="middle">21. Ask user to reload before saving</text>
+<line x1="1226.2800000000002" y1="1116" x2="1867.0800000000002" y2="1116" stroke="#222"/>
+<polygon points="1857.0800000000002,1111 1867.0800000000002,1116 1857.0800000000002,1121" fill="#222"/>
+<text x="1546.6800000000003" y="1110" font-size="12" text-anchor="middle">22. validate, jdbc.update(UPDATE ...)</text>
+<line x1="1877.0800000000002" y1="1154" x2="2172.6000000000004" y2="1154" stroke="#222"/>
+<polygon points="2162.6000000000004,1149 2172.6000000000004,1154 2162.6000000000004,1159" fill="#222"/>
+<text x="2024.8400000000001" y="1148" font-size="12" text-anchor="middle">23. UPDATE training_courses (version + 1)</text>
+<line x1="2172.6000000000004" y1="1192" x2="1877.0800000000002" y2="1192" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="1886.0800000000002,1187 1877.0800000000002,1192 1886.0800000000002,1197" fill="none" stroke="#222"/>
+<text x="2024.8400000000001" y="1186" font-size="12" text-anchor="middle">24. 1 row</text>
+<line x1="1867.0800000000002" y1="1230" x2="1226.2800000000002" y2="1230" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="1235.2800000000002,1225 1226.2800000000002,1230 1235.2800000000002,1235" fill="none" stroke="#222"/>
+<text x="1546.6800000000003" y="1224" font-size="12" text-anchor="middle">25. updated</text>
+<line x1="1216.2800000000002" y1="1268" x2="951.0800000000002" y2="1268" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="960.0800000000002,1263 951.0800000000002,1268 960.0800000000002,1273" fill="none" stroke="#222"/>
+<text x="1083.6800000000003" y="1262" font-size="12" text-anchor="middle">26. {id, notice}</text>
+<line x1="941.0800000000002" y1="1306" x2="484.28000000000003" y2="1306" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="493.28000000000003,1301 484.28000000000003,1306 493.28000000000003,1311" fill="none" stroke="#222"/>
+<text x="712.6800000000001" y="1300" font-size="12" text-anchor="middle">27. HTTP 200 (JSON)</text>
+<line x1="474.28000000000003" y1="1344" x2="125" y2="1344" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="134,1339 125,1344 134,1349" fill="none" stroke="#222"/>
+<text x="299.64" y="1338" font-size="12" text-anchor="middle">28. Show notice and return to CourseDetail</text>
+<rect x="132" y="914" width="227.76000000000002" height="16" fill="white"/>
+<text x="134" y="926" font-size="12" font-style="italic">[version changed by another user]</text>
+<rect x="132" y="1092" width="120.24000000000001" height="16" fill="white"/>
+<text x="134" y="1104" font-size="12" font-style="italic">[version matches]</text>
+<rect x="132" y="574" width="187.44000000000003" height="16" fill="white"/>
+<text x="134" y="586" font-size="12" font-style="italic">[course outside user scope]</text>
+<rect x="132" y="752" width="100.08000000000001" height="16" fill="white"/>
+<text x="134" y="764" font-size="12" font-style="italic">[course found]</text>
+</svg>

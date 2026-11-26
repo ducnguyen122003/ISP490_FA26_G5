@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2418" height="1102" viewBox="0 0 2418 1102" font-family="Arial, Helvetica, sans-serif"><rect width="100%" height="100%" fill="white"/>
+<rect x="50" y="394" width="2318.4" height="652" fill="none" stroke="#333"/>
+<polygon points="50,394 88,394 88,406 82,412 50,412" fill="white" stroke="#333"/>
+<text x="54" y="407" font-size="12" font-weight="bold">alt</text>
+<line x1="50" y1="546" x2="2368.4" y2="546" stroke="#333" stroke-dasharray="6,4"/>
+<line x1="120" y1="110" x2="120" y2="1082" stroke="#333" stroke-dasharray="6,5"/>
+<line x1="412.08000000000004" y1="110" x2="412.08000000000004" y2="1082" stroke="#333" stroke-dasharray="6,5"/>
+<line x1="811.6800000000001" y1="110" x2="811.6800000000001" y2="1082" stroke="#333" stroke-dasharray="6,5"/>
+<line x1="1177.68" y1="110" x2="1177.68" y2="1082" stroke="#333" stroke-dasharray="6,5"/>
+<line x1="1540.2400000000002" y1="110" x2="1540.2400000000002" y2="1082" stroke="#333" stroke-dasharray="6,5"/>
+<line x1="1716.2400000000002" y1="110" x2="1716.2400000000002" y2="1082" stroke="#333" stroke-dasharray="6,5"/>
+<line x1="1892.2400000000002" y1="110" x2="1892.2400000000002" y2="1082" stroke="#333" stroke-dasharray="6,5"/>
+<line x1="2278.4" y1="110" x2="2278.4" y2="1082" stroke="#333" stroke-dasharray="6,5"/>
+<rect x="115" y="142" width="10" height="872" fill="#82D3F5" stroke="#1F4E6B"/>
+<rect x="407.08000000000004" y="142" width="10" height="872" fill="#82D3F5" stroke="#1F4E6B"/>
+<rect x="806.6800000000001" y="180" width="10" height="796" fill="#82D3F5" stroke="#1F4E6B"/>
+<rect x="1172.68" y="218" width="10" height="720" fill="#82D3F5" stroke="#1F4E6B"/>
+<rect x="1535.2400000000002" y="304" width="10" height="18" fill="#82D3F5" stroke="#1F4E6B"/>
+<rect x="1711.2400000000002" y="342" width="10" height="18" fill="#82D3F5" stroke="#1F4E6B"/>
+<rect x="1887.2400000000002" y="616" width="10" height="284" fill="#82D3F5" stroke="#1F4E6B"/>
+<rect x="2273.4" y="654" width="10" height="208" fill="#82D3F5" stroke="#1F4E6B"/>
+<circle cx="120" cy="50" r="7" fill="#82D3F5" stroke="#333"/>
+<line x1="120" y1="57" x2="120" y2="75" stroke="#333"/><line x1="109" y1="63" x2="131" y2="63" stroke="#333"/>
+<line x1="120" y1="75" x2="111" y2="87" stroke="#333"/><line x1="120" y1="75" x2="129" y2="87" stroke="#333"/>
+<text x="120" y="102" font-size="12" text-anchor="middle">Admissions &amp; Training</text>
+<text x="120" y="115" font-size="12" text-anchor="middle">Management</text>
+<line x1="386.08000000000004" y1="50" x2="386.08000000000004" y2="74" stroke="#333"/><line x1="386.08000000000004" y1="62" x2="400.08000000000004" y2="62" stroke="#333"/>
+<circle cx="416.08000000000004" cy="62" r="16" fill="#82D3F5" stroke="#333"/>
+<text x="412.08000000000004" y="94" font-size="12" text-anchor="middle">:ListCoursePage</text>
+<circle cx="811.6800000000001" cy="62" r="16" fill="#82D3F5" stroke="#333"/>
+<polyline points="813.6800000000001,40 806.6800000000001,46 814.6800000000001,51" fill="none" stroke="#333"/>
+<text x="811.6800000000001" y="94" font-size="12" text-anchor="middle">:WorkspaceController</text>
+<rect x="1110.56" y="44" width="134.24" height="40" fill="#82D3F5" stroke="#1F4E6B"/>
+<text x="1177.68" y="58" font-size="11" text-anchor="middle">&lt;&lt;service&gt;&gt;</text>
+<text x="1177.68" y="73" font-size="12" text-anchor="middle">:WorkspaceService</text>
+<rect x="1483.2000000000003" y="44" width="114.08000000000001" height="40" fill="#82D3F5" stroke="#1F4E6B"/>
+<text x="1540.2400000000002" y="58" font-size="11" text-anchor="middle">&lt;&lt;component&gt;&gt;</text>
+<text x="1540.2400000000002" y="73" font-size="12" text-anchor="middle">:ScreenCatalog</text>
+<rect x="1622.2400000000002" y="44" width="188.00000000000003" height="40" fill="#82D3F5" stroke="#1F4E6B"/>
+<text x="1716.2400000000002" y="58" font-size="11" text-anchor="middle">&lt;&lt;service&gt;&gt;</text>
+<text x="1716.2400000000002" y="73" font-size="12" text-anchor="middle">:ScreenPermissionsService</text>
+<rect x="1838.5600000000002" y="44" width="107.36000000000001" height="40" fill="#82D3F5" stroke="#1F4E6B"/>
+<text x="1892.2400000000002" y="58" font-size="11" text-anchor="middle">&lt;&lt;repository&gt;&gt;</text>
+<text x="1892.2400000000002" y="73" font-size="12" text-anchor="middle">:WorkflowData</text>
+<rect x="2231.44" y="44" width="93.92" height="40" fill="#82D3F5" stroke="#1F4E6B"/>
+<text x="2278.4" y="58" font-size="11" text-anchor="middle">&lt;&lt;database&gt;&gt;</text>
+<text x="2278.4" y="73" font-size="12" text-anchor="middle">:PostgreSQL</text>
+<line x1="125" y1="150" x2="407.08000000000004" y2="150" stroke="#222"/>
+<polygon points="397.08000000000004,145 407.08000000000004,150 397.08000000000004,155" fill="#222"/>
+<text x="266.04" y="144" font-size="12" text-anchor="middle">1. Open course list / search / filter</text>
+<line x1="417.08000000000004" y1="188" x2="806.6800000000001" y2="188" stroke="#222"/>
+<polygon points="796.6800000000001,183 806.6800000000001,188 796.6800000000001,193" fill="#222"/>
+<text x="611.8800000000001" y="182" font-size="12" text-anchor="middle">2. GET /api/workspace/screens/ListCourse?q&amp;status&amp;page</text>
+<line x1="816.6800000000001" y1="226" x2="1172.68" y2="226" stroke="#222"/>
+<polygon points="1162.68,221 1172.68,226 1162.68,231" fill="#222"/>
+<text x="994.6800000000001" y="220" font-size="12" text-anchor="middle">3. view(&quot;ListCourse&quot;, null, q, status, page, ...)</text>
+<polyline points="1182.68,264 1212.68,264 1212.68,286 1184.68,286" fill="none" stroke="#222"/>
+<polygon points="1193.68,281 1183.68,286 1193.68,291" fill="#222"/>
+<text x="1218.68" y="268" font-size="12">4. access(code)</text>
+<line x1="1182.68" y1="312" x2="1535.2400000000002" y2="312" stroke="#222"/>
+<polygon points="1525.2400000000002,307 1535.2400000000002,312 1525.2400000000002,317" fill="#222"/>
+<text x="1358.96" y="306" font-size="12" text-anchor="middle">5. get(code), requireRole(screen, role)</text>
+<line x1="1182.68" y1="350" x2="1711.2400000000002" y2="350" stroke="#222"/>
+<polygon points="1701.2400000000002,345 1711.2400000000002,350 1701.2400000000002,355" fill="#222"/>
+<text x="1446.96" y="344" font-size="12" text-anchor="middle">6. require(&quot;ListCourse&quot;)</text>
+<line x1="1172.68" y1="428" x2="816.6800000000001" y2="428" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="825.6800000000001,423 816.6800000000001,428 825.6800000000001,433" fill="none" stroke="#222"/>
+<text x="994.6800000000001" y="422" font-size="12" text-anchor="middle">7. AccessDeniedException</text>
+<line x1="806.6800000000001" y1="466" x2="417.08000000000004" y2="466" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="426.08000000000004,461 417.08000000000004,466 426.08000000000004,471" fill="none" stroke="#222"/>
+<text x="611.8800000000001" y="460" font-size="12" text-anchor="middle">8. HTTP 403</text>
+<line x1="407.08000000000004" y1="504" x2="125" y2="504" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="134,499 125,504 134,509" fill="none" stroke="#222"/>
+<text x="266.04" y="498" font-size="12" text-anchor="middle">9. Show access error</text>
+<polyline points="1182.68,576 1212.68,576 1212.68,598 1184.68,598" fill="none" stroke="#222"/>
+<polygon points="1193.68,593 1183.68,598 1193.68,603" fill="#222"/>
+<text x="1218.68" y="580" font-size="12">10. resource(code) = &quot;courses&quot;; validate filters</text>
+<line x1="1182.68" y1="624" x2="1887.2400000000002" y2="624" stroke="#222"/>
+<polygon points="1877.2400000000002,619 1887.2400000000002,624 1877.2400000000002,629" fill="#222"/>
+<text x="1534.96" y="618" font-size="12" text-anchor="middle">11. page(&quot;courses&quot;, user, q, status, page)</text>
+<line x1="1897.2400000000002" y1="662" x2="2273.4" y2="662" stroke="#222"/>
+<polygon points="2263.4,657 2273.4,662 2263.4,667" fill="#222"/>
+<text x="2085.32" y="656" font-size="12" text-anchor="middle">12. SELECT training_courses (scope, filters) LIMIT 25</text>
+<line x1="2273.4" y1="700" x2="1897.2400000000002" y2="700" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="1906.2400000000002,695 1897.2400000000002,700 1906.2400000000002,705" fill="none" stroke="#222"/>
+<text x="2085.32" y="694" font-size="12" text-anchor="middle">13. rows</text>
+<line x1="1887.2400000000002" y1="738" x2="1182.68" y2="738" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="1191.68,733 1182.68,738 1191.68,743" fill="none" stroke="#222"/>
+<text x="1534.96" y="732" font-size="12" text-anchor="middle">14. items</text>
+<line x1="1182.68" y1="776" x2="1887.2400000000002" y2="776" stroke="#222"/>
+<polygon points="1877.2400000000002,771 1887.2400000000002,776 1877.2400000000002,781" fill="#222"/>
+<text x="1534.96" y="770" font-size="12" text-anchor="middle">15. total(&quot;courses&quot;, user, q, status)</text>
+<line x1="1897.2400000000002" y1="814" x2="2273.4" y2="814" stroke="#222"/>
+<polygon points="2263.4,809 2273.4,814 2263.4,819" fill="#222"/>
+<text x="2085.32" y="808" font-size="12" text-anchor="middle">16. SELECT COUNT(*)</text>
+<line x1="2273.4" y1="852" x2="1897.2400000000002" y2="852" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="1906.2400000000002,847 1897.2400000000002,852 1906.2400000000002,857" fill="none" stroke="#222"/>
+<text x="2085.32" y="846" font-size="12" text-anchor="middle">17. count</text>
+<line x1="1887.2400000000002" y1="890" x2="1182.68" y2="890" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="1191.68,885 1182.68,890 1191.68,895" fill="none" stroke="#222"/>
+<text x="1534.96" y="884" font-size="12" text-anchor="middle">18. total</text>
+<line x1="1172.68" y1="928" x2="816.6800000000001" y2="928" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="825.6800000000001,923 816.6800000000001,928 825.6800000000001,933" fill="none" stroke="#222"/>
+<text x="994.6800000000001" y="922" font-size="12" text-anchor="middle">19. {items, total, page, totalPages, canWrite}</text>
+<line x1="806.6800000000001" y1="966" x2="417.08000000000004" y2="966" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="426.08000000000004,961 417.08000000000004,966 426.08000000000004,971" fill="none" stroke="#222"/>
+<text x="611.8800000000001" y="960" font-size="12" text-anchor="middle">20. HTTP 200 (JSON)</text>
+<line x1="407.08000000000004" y1="1004" x2="125" y2="1004" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="134,999 125,1004 134,1009" fill="none" stroke="#222"/>
+<text x="266.04" y="998" font-size="12" text-anchor="middle">21. Display course list with pagination</text>
+<rect x="132" y="412" width="207.60000000000002" height="16" fill="white"/>
+<text x="134" y="424" font-size="12" font-style="italic">[role or function not allowed]</text>
+<rect x="132" y="552" width="66.48" height="16" fill="white"/>
+<text x="134" y="564" font-size="12" font-style="italic">[allowed]</text>
+</svg>

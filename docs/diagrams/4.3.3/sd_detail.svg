@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2197" height="1140" viewBox="0 0 2197 1140" font-family="Arial, Helvetica, sans-serif"><rect width="100%" height="100%" fill="white"/>
+<rect x="50" y="508" width="2096.6400000000003" height="576" fill="none" stroke="#333"/>
+<polygon points="50,508 88,508 88,520 82,526 50,526" fill="white" stroke="#333"/>
+<text x="54" y="521" font-size="12" font-weight="bold">alt</text>
+<line x1="50" y1="698" x2="2146.6400000000003" y2="698" stroke="#333" stroke-dasharray="6,4"/>
+<line x1="120" y1="110" x2="120" y2="1120" stroke="#333" stroke-dasharray="6,5"/>
+<line x1="479.28000000000003" y1="110" x2="479.28000000000003" y2="1120" stroke="#333" stroke-dasharray="6,5"/>
+<line x1="831.8400000000001" y1="110" x2="831.8400000000001" y2="1120" stroke="#333" stroke-dasharray="6,5"/>
+<line x1="1083.6000000000001" y1="110" x2="1083.6000000000001" y2="1120" stroke="#333" stroke-dasharray="6,5"/>
+<line x1="1405.8400000000001" y1="110" x2="1405.8400000000001" y2="1120" stroke="#333" stroke-dasharray="6,5"/>
+<line x1="1581.8400000000001" y1="110" x2="1581.8400000000001" y2="1120" stroke="#333" stroke-dasharray="6,5"/>
+<line x1="1757.8400000000001" y1="110" x2="1757.8400000000001" y2="1120" stroke="#333" stroke-dasharray="6,5"/>
+<line x1="2056.6400000000003" y1="110" x2="2056.6400000000003" y2="1120" stroke="#333" stroke-dasharray="6,5"/>
+<rect x="115" y="142" width="10" height="910" fill="#82D3F5" stroke="#1F4E6B"/>
+<rect x="474.28000000000003" y="142" width="10" height="910" fill="#82D3F5" stroke="#1F4E6B"/>
+<rect x="826.8400000000001" y="180" width="10" height="834" fill="#82D3F5" stroke="#1F4E6B"/>
+<rect x="1078.6000000000001" y="218" width="10" height="758" fill="#82D3F5" stroke="#1F4E6B"/>
+<rect x="1400.8400000000001" y="304" width="10" height="18" fill="#82D3F5" stroke="#1F4E6B"/>
+<rect x="1576.8400000000001" y="342" width="10" height="18" fill="#82D3F5" stroke="#1F4E6B"/>
+<rect x="1752.8400000000001" y="380" width="10" height="558" fill="#82D3F5" stroke="#1F4E6B"/>
+<rect x="2051.6400000000003" y="418" width="10" height="482" fill="#82D3F5" stroke="#1F4E6B"/>
+<circle cx="120" cy="50" r="7" fill="#82D3F5" stroke="#333"/>
+<line x1="120" y1="57" x2="120" y2="75" stroke="#333"/><line x1="109" y1="63" x2="131" y2="63" stroke="#333"/>
+<line x1="120" y1="75" x2="111" y2="87" stroke="#333"/><line x1="120" y1="75" x2="129" y2="87" stroke="#333"/>
+<text x="120" y="102" font-size="12" text-anchor="middle">Admissions &amp; Training</text>
+<text x="120" y="115" font-size="12" text-anchor="middle">Management</text>
+<line x1="453.28000000000003" y1="50" x2="453.28000000000003" y2="74" stroke="#333"/><line x1="453.28000000000003" y1="62" x2="467.28000000000003" y2="62" stroke="#333"/>
+<circle cx="483.28000000000003" cy="62" r="16" fill="#82D3F5" stroke="#333"/>
+<text x="479.28000000000003" y="94" font-size="12" text-anchor="middle">:CourseDetailPage</text>
+<circle cx="831.8400000000001" cy="62" r="16" fill="#82D3F5" stroke="#333"/>
+<polyline points="833.8400000000001,40 826.8400000000001,46 834.8400000000001,51" fill="none" stroke="#333"/>
+<text x="831.8400000000001" y="94" font-size="12" text-anchor="middle">:WorkspaceController</text>
+<rect x="1016.4800000000001" y="44" width="134.24" height="40" fill="#82D3F5" stroke="#1F4E6B"/>
+<text x="1083.6000000000001" y="58" font-size="11" text-anchor="middle">&lt;&lt;service&gt;&gt;</text>
+<text x="1083.6000000000001" y="73" font-size="12" text-anchor="middle">:WorkspaceService</text>
+<rect x="1348.8000000000002" y="44" width="114.08000000000001" height="40" fill="#82D3F5" stroke="#1F4E6B"/>
+<text x="1405.8400000000001" y="58" font-size="11" text-anchor="middle">&lt;&lt;component&gt;&gt;</text>
+<text x="1405.8400000000001" y="73" font-size="12" text-anchor="middle">:ScreenCatalog</text>
+<rect x="1487.8400000000001" y="44" width="188.00000000000003" height="40" fill="#82D3F5" stroke="#1F4E6B"/>
+<text x="1581.8400000000001" y="58" font-size="11" text-anchor="middle">&lt;&lt;service&gt;&gt;</text>
+<text x="1581.8400000000001" y="73" font-size="12" text-anchor="middle">:ScreenPermissionsService</text>
+<rect x="1704.16" y="44" width="107.36000000000001" height="40" fill="#82D3F5" stroke="#1F4E6B"/>
+<text x="1757.8400000000001" y="58" font-size="11" text-anchor="middle">&lt;&lt;repository&gt;&gt;</text>
+<text x="1757.8400000000001" y="73" font-size="12" text-anchor="middle">:WorkflowData</text>
+<rect x="2009.6800000000003" y="44" width="93.92" height="40" fill="#82D3F5" stroke="#1F4E6B"/>
+<text x="2056.6400000000003" y="58" font-size="11" text-anchor="middle">&lt;&lt;database&gt;&gt;</text>
+<text x="2056.6400000000003" y="73" font-size="12" text-anchor="middle">:PostgreSQL</text>
+<line x1="125" y1="150" x2="474.28000000000003" y2="150" stroke="#222"/>
+<polygon points="464.28000000000003,145 474.28000000000003,150 464.28000000000003,155" fill="#222"/>
+<text x="299.64" y="144" font-size="12" text-anchor="middle">1. Select a course in the list</text>
+<line x1="484.28000000000003" y1="188" x2="826.8400000000001" y2="188" stroke="#222"/>
+<polygon points="816.8400000000001,183 826.8400000000001,188 816.8400000000001,193" fill="#222"/>
+<text x="655.5600000000001" y="182" font-size="12" text-anchor="middle">2. GET /api/workspace/screens/CourseDetail/{id}</text>
+<line x1="836.8400000000001" y1="226" x2="1078.6000000000001" y2="226" stroke="#222"/>
+<polygon points="1068.6000000000001,221 1078.6000000000001,226 1068.6000000000001,231" fill="#222"/>
+<text x="957.7200000000001" y="220" font-size="12" text-anchor="middle">3. view(&quot;CourseDetail&quot;, id, ...)</text>
+<polyline points="1088.6000000000001,264 1118.6000000000001,264 1118.6000000000001,286 1090.6000000000001,286" fill="none" stroke="#222"/>
+<polygon points="1099.6000000000001,281 1089.6000000000001,286 1099.6000000000001,291" fill="#222"/>
+<text x="1124.6000000000001" y="268" font-size="12">4. access(code)</text>
+<line x1="1088.6000000000001" y1="312" x2="1400.8400000000001" y2="312" stroke="#222"/>
+<polygon points="1390.8400000000001,307 1400.8400000000001,312 1390.8400000000001,317" fill="#222"/>
+<text x="1244.7200000000003" y="306" font-size="12" text-anchor="middle">5. get(code), requireRole(screen, role)</text>
+<line x1="1088.6000000000001" y1="350" x2="1576.8400000000001" y2="350" stroke="#222"/>
+<polygon points="1566.8400000000001,345 1576.8400000000001,350 1566.8400000000001,355" fill="#222"/>
+<text x="1332.7200000000003" y="344" font-size="12" text-anchor="middle">6. require(&quot;CourseDetail&quot;)</text>
+<line x1="1088.6000000000001" y1="388" x2="1752.8400000000001" y2="388" stroke="#222"/>
+<polygon points="1742.8400000000001,383 1752.8400000000001,388 1742.8400000000001,393" fill="#222"/>
+<text x="1420.7200000000003" y="382" font-size="12" text-anchor="middle">7. record(&quot;courses&quot;, id, user)</text>
+<line x1="1762.8400000000001" y1="426" x2="2051.6400000000003" y2="426" stroke="#222"/>
+<polygon points="2041.6400000000003,421 2051.6400000000003,426 2041.6400000000003,431" fill="#222"/>
+<text x="1907.2400000000002" y="420" font-size="12" text-anchor="middle">8. SELECT course WHERE scope AND id = ?</text>
+<line x1="2051.6400000000003" y1="464" x2="1762.8400000000001" y2="464" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="1771.8400000000001,459 1762.8400000000001,464 1771.8400000000001,469" fill="none" stroke="#222"/>
+<text x="1907.2400000000002" y="458" font-size="12" text-anchor="middle">9. course / no row</text>
+<line x1="1752.8400000000001" y1="542" x2="1088.6000000000001" y2="542" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="1097.6000000000001,537 1088.6000000000001,542 1097.6000000000001,547" fill="none" stroke="#222"/>
+<text x="1420.7200000000003" y="536" font-size="12" text-anchor="middle">10. NOT_FOUND</text>
+<line x1="1078.6000000000001" y1="580" x2="836.8400000000001" y2="580" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="845.8400000000001,575 836.8400000000001,580 845.8400000000001,585" fill="none" stroke="#222"/>
+<text x="957.7200000000001" y="574" font-size="12" text-anchor="middle">11. WorkflowException 404</text>
+<line x1="826.8400000000001" y1="618" x2="484.28000000000003" y2="618" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="493.28000000000003,613 484.28000000000003,618 493.28000000000003,623" fill="none" stroke="#222"/>
+<text x="655.5600000000001" y="612" font-size="12" text-anchor="middle">12. HTTP 404</text>
+<line x1="474.28000000000003" y1="656" x2="125" y2="656" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="134,651 125,656 134,661" fill="none" stroke="#222"/>
+<text x="299.64" y="650" font-size="12" text-anchor="middle">13. Show not found message</text>
+<line x1="1752.8400000000001" y1="728" x2="1088.6000000000001" y2="728" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="1097.6000000000001,723 1088.6000000000001,728 1097.6000000000001,733" fill="none" stroke="#222"/>
+<text x="1420.7200000000003" y="722" font-size="12" text-anchor="middle">14. record</text>
+<polyline points="1088.6000000000001,766 1118.6000000000001,766 1118.6000000000001,788 1090.6000000000001,788" fill="none" stroke="#222"/>
+<polygon points="1099.6000000000001,783 1089.6000000000001,788 1099.6000000000001,793" fill="#222"/>
+<text x="1124.6000000000001" y="770" font-size="12">15. related(code, &quot;courses&quot;, record, user)</text>
+<line x1="1088.6000000000001" y1="814" x2="1752.8400000000001" y2="814" stroke="#222"/>
+<polygon points="1742.8400000000001,809 1752.8400000000001,814 1742.8400000000001,819" fill="#222"/>
+<text x="1420.7200000000003" y="808" font-size="12" text-anchor="middle">16. rows(assessments, lecturers, classes)</text>
+<line x1="1762.8400000000001" y1="852" x2="2051.6400000000003" y2="852" stroke="#222"/>
+<polygon points="2041.6400000000003,847 2051.6400000000003,852 2041.6400000000003,857" fill="#222"/>
+<text x="1907.2400000000002" y="846" font-size="12" text-anchor="middle">17. SELECT related rows</text>
+<line x1="2051.6400000000003" y1="890" x2="1762.8400000000001" y2="890" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="1771.8400000000001,885 1762.8400000000001,890 1771.8400000000001,895" fill="none" stroke="#222"/>
+<text x="1907.2400000000002" y="884" font-size="12" text-anchor="middle">18. rows</text>
+<line x1="1752.8400000000001" y1="928" x2="1088.6000000000001" y2="928" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="1097.6000000000001,923 1088.6000000000001,928 1097.6000000000001,933" fill="none" stroke="#222"/>
+<text x="1420.7200000000003" y="922" font-size="12" text-anchor="middle">19. related data</text>
+<line x1="1078.6000000000001" y1="966" x2="836.8400000000001" y2="966" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="845.8400000000001,961 836.8400000000001,966 845.8400000000001,971" fill="none" stroke="#222"/>
+<text x="957.7200000000001" y="960" font-size="12" text-anchor="middle">20. {record, related, canWrite}</text>
+<line x1="826.8400000000001" y1="1004" x2="484.28000000000003" y2="1004" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="493.28000000000003,999 484.28000000000003,1004 493.28000000000003,1009" fill="none" stroke="#222"/>
+<text x="655.5600000000001" y="998" font-size="12" text-anchor="middle">21. HTTP 200 (JSON)</text>
+<line x1="474.28000000000003" y1="1042" x2="125" y2="1042" stroke="#222" stroke-dasharray="5,4"/>
+<polyline points="134,1037 125,1042 134,1047" fill="none" stroke="#222"/>
+<text x="299.64" y="1036" font-size="12" text-anchor="middle">22. Show Overview, Training content, Classes tabs</text>
+<rect x="132" y="526" width="187.44000000000003" height="16" fill="white"/>
+<text x="134" y="538" font-size="12" font-style="italic">[course outside user scope]</text>
+<rect x="132" y="704" width="100.08000000000001" height="16" fill="white"/>
+<text x="134" y="716" font-size="12" font-style="italic">[course found]</text>
+</svg>
