@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2324" height="546" viewBox="0 0 2324 546" font-family="Arial, Helvetica, sans-serif"><defs><marker id="arr" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="black"/></marker></defs><rect width="100%" height="100%" fill="white"/><rect x="1" y="1" width="2322" height="544" fill="white" stroke="black" stroke-width="1.5"/>
+<line x1="1" y1="26" x2="2323" y2="26" stroke="black" stroke-width="1.5"/>
+<text x="1162.0" y="18" font-size="14" font-weight="bold" text-anchor="middle">Equipment Issuance and Exchange (BF-02)</text>
+<line x1="34" y1="26" x2="34" y2="546" stroke="black"/>
+<text x="21.0" y="91.0" font-size="12" font-weight="bold" text-anchor="middle" transform="rotate(-90 21.0 91.0)">Student</text>
+<line x1="1" y1="156" x2="2323" y2="156" stroke="black"/>
+<text x="21.0" y="221.0" font-size="12" font-weight="bold" text-anchor="middle" transform="rotate(-90 21.0 221.0)">Lecturer</text>
+<line x1="1" y1="286" x2="2323" y2="286" stroke="black"/>
+<text x="21.0" y="351.0" font-size="12" font-weight="bold" text-anchor="middle" transform="rotate(-90 21.0 351.0)">IT Support</text>
+<line x1="1" y1="416" x2="2323" y2="416" stroke="black"/>
+<text x="21.0" y="481.0" font-size="12" font-weight="bold" text-anchor="middle" transform="rotate(-90 21.0 481.0)">Accountant</text>
+<polyline points="151.0,221.0 220.0,221.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<polyline points="338.0,221.0 429.0,221.0 429.0,323.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<polyline points="488.0,351.0 549.0,351.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<polyline points="788.0,351.0 849.0,351.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<polyline points="1088.0,351.0 1149.0,351.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<polyline points="1388.0,351.0 1479.0,351.0 1479.0,453.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<polyline points="1538.0,481.0 1570.0,481.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<polyline points="1838.0,351.0 1870.0,351.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<polyline points="1988.0,351.0 2079.0,351.0 2079.0,119.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<polyline points="2138.0,91.0 2207.0,91.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<polyline points="579.0,321.0 579.0,243.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<rect x="582.0" y="271.0" width="16.8" height="14" fill="white"/>
+<text x="584.0" y="282.0" font-size="11" font-style="italic" text-anchor="start">No</text>
+<polyline points="609.0,351.0 670.0,351.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<rect x="627.9" y="334.0" width="23.200000000000003" height="14" fill="white"/>
+<text x="639.5" y="345.0" font-size="11" font-style="italic" text-anchor="middle">Yes</text>
+<polyline points="909.0,351.0 970.0,351.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<rect x="927.9" y="334.0" width="23.200000000000003" height="14" fill="white"/>
+<text x="939.5" y="345.0" font-size="11" font-style="italic" text-anchor="middle">Yes</text>
+<polyline points="1209.0,351.0 1270.0,351.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<rect x="1227.9" y="334.0" width="23.200000000000003" height="14" fill="white"/>
+<text x="1239.5" y="345.0" font-size="11" font-style="italic" text-anchor="middle">Yes</text>
+<polyline points="1688.0,481.0 1779.0,481.0 1779.0,379.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<polyline points="879.0,321.0 879.0,298.0 1779.0,298.0 1779.0,323.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<rect x="882.0" y="298.5" width="16.8" height="14" fill="white"/>
+<text x="884.0" y="309.5" font-size="11" font-style="italic" text-anchor="start">No</text>
+<polyline points="1179.0,321.0 1179.0,312.0 1779.0,312.0 1779.0,323.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<rect x="1182.0" y="305.5" width="42.400000000000006" height="14" fill="white"/>
+<text x="1184.0" y="316.5" font-size="11" font-style="italic" text-anchor="start">Intact</text>
+<circle cx="129.0" cy="221.0" r="22" fill="black"/><text x="129.0" y="225.0" font-size="11" fill="white" text-anchor="middle">Start</text>
+<rect x="220.0" y="193.0" width="118" height="56" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="279.0" y="205.5" font-size="11" text-anchor="middle">Create equipment</text>
+<text x="279.0" y="218.5" font-size="11" text-anchor="middle">request (initial,</text>
+<text x="279.0" y="231.5" font-size="11" text-anchor="middle">replacement,</text>
+<text x="279.0" y="244.5" font-size="11" text-anchor="middle">supplement)</text>
+<rect x="370.0" y="323.0" width="118" height="56" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="429.0" y="355.0" font-size="11" text-anchor="middle">Review request queue</text>
+<polygon points="579.0,321.0 609.0,351.0 579.0,381.0 549.0,351.0" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="579.0" y="395.0" font-size="11" text-anchor="middle">Accept?</text>
+<circle cx="579.0" cy="221.0" r="22" fill="white" stroke="black" stroke-width="1.5"/><circle cx="579.0" cy="221.0" r="17" fill="black"/><text x="579.0" y="225.0" font-size="11" fill="white" text-anchor="middle">End</text>
+<text x="607.0" y="225.0" font-size="11">Rejected</text>
+<rect x="670.0" y="323.0" width="118" height="56" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="729.0" y="348.5" font-size="11" text-anchor="middle">Prepare equipment</text>
+<text x="729.0" y="361.5" font-size="11" text-anchor="middle">and mark ready</text>
+<polygon points="879.0,321.0 909.0,351.0 879.0,381.0 849.0,351.0" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="879.0" y="395.0" font-size="11" text-anchor="middle">Replacement?</text>
+<rect x="970.0" y="323.0" width="118" height="56" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="1029.0" y="342.0" font-size="11" text-anchor="middle">Recover current</text>
+<text x="1029.0" y="355.0" font-size="11" text-anchor="middle">device, record</text>
+<text x="1029.0" y="368.0" font-size="11" text-anchor="middle">condition</text>
+<polygon points="1179.0,321.0 1209.0,351.0 1179.0,381.0 1149.0,351.0" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="1179.0" y="395.0" font-size="11" text-anchor="middle">Damaged?</text>
+<rect x="1270.0" y="323.0" width="118" height="56" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="1329.0" y="342.0" font-size="11" text-anchor="middle">Open incident,</text>
+<text x="1329.0" y="355.0" font-size="11" text-anchor="middle">assess, propose</text>
+<text x="1329.0" y="368.0" font-size="11" text-anchor="middle">compensation</text>
+<rect x="1420.0" y="453.0" width="118" height="56" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="1479.0" y="478.5" font-size="11" text-anchor="middle">Approve compensation</text>
+<text x="1479.0" y="491.5" font-size="11" text-anchor="middle">amount</text>
+<rect x="1570.0" y="453.0" width="118" height="56" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="1629.0" y="472.0" font-size="11" text-anchor="middle">Collect by transfer</text>
+<text x="1629.0" y="485.0" font-size="11" text-anchor="middle">or deduct from</text>
+<text x="1629.0" y="498.0" font-size="11" text-anchor="middle">deposit</text>
+<rect x="1720.0" y="323.0" width="118" height="56" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="1779.0" y="342.0" font-size="11" text-anchor="middle">Check contract</text>
+<text x="1779.0" y="355.0" font-size="11" text-anchor="middle">Active and deposit</text>
+<text x="1779.0" y="368.0" font-size="11" text-anchor="middle">confirmed</text>
+<rect x="1870.0" y="323.0" width="118" height="56" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="1929.0" y="348.5" font-size="11" text-anchor="middle">Hand over equipment</text>
+<text x="1929.0" y="361.5" font-size="11" text-anchor="middle">with signed receipt</text>
+<rect x="2020.0" y="63.0" width="118" height="56" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="2079.0" y="82.0" font-size="11" text-anchor="middle">Receive equipment</text>
+<text x="2079.0" y="95.0" font-size="11" text-anchor="middle">and view handover</text>
+<text x="2079.0" y="108.0" font-size="11" text-anchor="middle">receipt</text>
+<circle cx="2229.0" cy="91.0" r="22" fill="white" stroke="black" stroke-width="1.5"/><circle cx="2229.0" cy="91.0" r="17" fill="black"/><text x="2229.0" y="95.0" font-size="11" fill="white" text-anchor="middle">End</text></svg>

@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2624" height="546" viewBox="0 0 2624 546" font-family="Arial, Helvetica, sans-serif"><defs><marker id="arr" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="black"/></marker></defs><rect width="100%" height="100%" fill="white"/><rect x="1" y="1" width="2622" height="544" fill="white" stroke="black" stroke-width="1.5"/>
+<line x1="1" y1="26" x2="2623" y2="26" stroke="black" stroke-width="1.5"/>
+<text x="1312.0" y="18" font-size="14" font-weight="bold" text-anchor="middle">Admissions and Enrollment (BF-01)</text>
+<line x1="34" y1="26" x2="34" y2="546" stroke="black"/>
+<text x="21.0" y="91.0" font-size="12" font-weight="bold" text-anchor="middle" transform="rotate(-90 21.0 91.0)">Guest / Student</text>
+<line x1="1" y1="156" x2="2623" y2="156" stroke="black"/>
+<text x="21.0" y="221.0" font-size="12" font-weight="bold" text-anchor="middle" transform="rotate(-90 21.0 221.0)">Admissions</text>
+<line x1="1" y1="286" x2="2623" y2="286" stroke="black"/>
+<text x="21.0" y="351.0" font-size="12" font-weight="bold" text-anchor="middle" transform="rotate(-90 21.0 351.0)">Academic Affairs</text>
+<line x1="1" y1="416" x2="2623" y2="416" stroke="black"/>
+<text x="21.0" y="481.0" font-size="12" font-weight="bold" text-anchor="middle" transform="rotate(-90 21.0 481.0)">Accountant</text>
+<polyline points="151.0,91.0 220.0,91.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<polyline points="338.0,91.0 429.0,91.0 429.0,193.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<polyline points="488.0,221.0 549.0,221.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<polyline points="788.0,221.0 820.0,221.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<polyline points="938.0,221.0 1029.0,221.0 1029.0,323.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<polyline points="1088.0,351.0 1120.0,351.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<polyline points="1238.0,351.0 1329.0,351.0 1329.0,249.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<polyline points="1388.0,221.0 1479.0,221.0 1479.0,323.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<polyline points="1538.0,351.0 1570.0,351.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<polyline points="1688.0,351.0 1779.0,351.0 1779.0,119.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<polyline points="1838.0,91.0 1929.0,91.0 1929.0,453.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<polyline points="1988.0,481.0 2049.0,481.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<polyline points="2288.0,481.0 2379.0,481.0 2379.0,379.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<polyline points="2438.0,351.0 2507.0,351.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<polyline points="579.0,191.0 579.0,113.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<rect x="582.0" y="141.0" width="16.8" height="14" fill="white"/>
+<text x="584.0" y="152.0" font-size="11" font-style="italic" text-anchor="start">No</text>
+<polyline points="609.0,221.0 670.0,221.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<rect x="627.9" y="204.0" width="23.200000000000003" height="14" fill="white"/>
+<text x="639.5" y="215.0" font-size="11" font-style="italic" text-anchor="middle">Yes</text>
+<polyline points="2109.0,481.0 2170.0,481.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<rect x="2127.9" y="464.0" width="23.200000000000003" height="14" fill="white"/>
+<text x="2139.5" y="475.0" font-size="11" font-style="italic" text-anchor="middle">Yes</text>
+<polyline points="2079.0,451.0 2079.0,91.0 1838.0,91.0" fill="none" stroke="black" stroke-width="1.2" marker-end="url(#arr)"/>
+<rect x="2082.0" y="260.0" width="80.80000000000001" height="14" fill="white"/>
+<text x="2084.0" y="271.0" font-size="11" font-style="italic" text-anchor="start">No: mismatch</text>
+<circle cx="129.0" cy="91.0" r="22" fill="black"/><text x="129.0" y="95.0" font-size="11" fill="white" text-anchor="middle">Start</text>
+<rect x="220.0" y="63.0" width="118" height="56" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="279.0" y="88.5" font-size="11" text-anchor="middle">Submit consultation</text>
+<text x="279.0" y="101.5" font-size="11" text-anchor="middle">registration</text>
+<rect x="370.0" y="193.0" width="118" height="56" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="429.0" y="212.0" font-size="11" text-anchor="middle">Verify email and</text>
+<text x="429.0" y="225.0" font-size="11" text-anchor="middle">record consultation</text>
+<text x="429.0" y="238.0" font-size="11" text-anchor="middle">outcome</text>
+<polygon points="579.0,191.0 609.0,221.0 579.0,251.0 549.0,221.0" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="579.0" y="265.0" font-size="11" text-anchor="middle">Continue?</text>
+<circle cx="579.0" cy="91.0" r="22" fill="white" stroke="black" stroke-width="1.5"/><circle cx="579.0" cy="91.0" r="17" fill="black"/><text x="579.0" y="95.0" font-size="11" fill="white" text-anchor="middle">End</text>
+<text x="607.0" y="95.0" font-size="11">Not proceeding</text>
+<rect x="670.0" y="193.0" width="118" height="56" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="729.0" y="212.0" font-size="11" text-anchor="middle">Upload 5 scanned</text>
+<text x="729.0" y="225.0" font-size="11" text-anchor="middle">documents and submit</text>
+<text x="729.0" y="238.0" font-size="11" text-anchor="middle">profile</text>
+<rect x="820.0" y="193.0" width="118" height="56" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="879.0" y="218.5" font-size="11" text-anchor="middle">Forward complete</text>
+<text x="879.0" y="231.5" font-size="11" text-anchor="middle">profile</text>
+<rect x="970.0" y="323.0" width="118" height="56" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="1029.0" y="342.0" font-size="11" text-anchor="middle">Create draft</text>
+<text x="1029.0" y="355.0" font-size="11" text-anchor="middle">contract with course</text>
+<text x="1029.0" y="368.0" font-size="11" text-anchor="middle">and class seat</text>
+<rect x="1120.0" y="323.0" width="118" height="56" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="1179.0" y="348.5" font-size="11" text-anchor="middle">Send contract for</text>
+<text x="1179.0" y="361.5" font-size="11" text-anchor="middle">signature</text>
+<rect x="1270.0" y="193.0" width="118" height="56" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="1329.0" y="212.0" font-size="11" text-anchor="middle">Collect paper</text>
+<text x="1329.0" y="225.0" font-size="11" text-anchor="middle">signature, upload</text>
+<text x="1329.0" y="238.0" font-size="11" text-anchor="middle">signed scan</text>
+<rect x="1420.0" y="323.0" width="118" height="56" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="1479.0" y="348.5" font-size="11" text-anchor="middle">Approve signed</text>
+<text x="1479.0" y="361.5" font-size="11" text-anchor="middle">contract (Signed)</text>
+<rect x="1570.0" y="323.0" width="118" height="56" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="1629.0" y="348.5" font-size="11" text-anchor="middle">Create student</text>
+<text x="1629.0" y="361.5" font-size="11" text-anchor="middle">account, email login</text>
+<rect x="1720.0" y="63.0" width="118" height="56" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="1779.0" y="82.0" font-size="11" text-anchor="middle">Pay via QR and</text>
+<text x="1779.0" y="95.0" font-size="11" text-anchor="middle">upload transfer</text>
+<text x="1779.0" y="108.0" font-size="11" text-anchor="middle">receipt</text>
+<rect x="1870.0" y="453.0" width="118" height="56" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="1929.0" y="478.5" font-size="11" text-anchor="middle">Reconcile receipt</text>
+<text x="1929.0" y="491.5" font-size="11" text-anchor="middle">with bank statement</text>
+<polygon points="2079.0,451.0 2109.0,481.0 2079.0,511.0 2049.0,481.0" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="2079.0" y="525.0" font-size="11" text-anchor="middle">Matches?</text>
+<rect x="2170.0" y="453.0" width="118" height="56" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="2229.0" y="472.0" font-size="11" text-anchor="middle">Confirm payment;</text>
+<text x="2229.0" y="485.0" font-size="11" text-anchor="middle">contract Active when</text>
+<text x="2229.0" y="498.0" font-size="11" text-anchor="middle">tuition is full</text>
+<rect x="2320.0" y="323.0" width="118" height="56" fill="white" stroke="black" stroke-width="1.2"/>
+<text x="2379.0" y="348.5" font-size="11" text-anchor="middle">Confirm class</text>
+<text x="2379.0" y="361.5" font-size="11" text-anchor="middle">assignment</text>
+<circle cx="2529.0" cy="351.0" r="22" fill="white" stroke="black" stroke-width="1.5"/><circle cx="2529.0" cy="351.0" r="17" fill="black"/><text x="2529.0" y="355.0" font-size="11" fill="white" text-anchor="middle">End</text></svg>
